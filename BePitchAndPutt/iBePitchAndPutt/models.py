@@ -7,19 +7,21 @@ class Player (models.Model):
     age = models.IntegerField()
     handicap = models.FloatField()
 
-class Match (models.Model):
 
-    hole = models.ForeignKey(Hole)
-    hole_result = models.IntegerField()
-    total_result = models.IntegerField()
+class Field(models.Model):
+    holes = models.IntegerField()
+    par = models.IntegerField()
+
 
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
-    handicap_hole = IntegerField()
+    handicap_hole = models.IntegerField()
 
 
-class Field(models.Model):
-    holes = models.IntegerField()
-    par = models.IntegerField()
+class Match (models.Model):
+
+    hole = models.ForeignKey(Hole)
+    hole_result = models.IntegerField()
+    total_result = models.IntegerField()
