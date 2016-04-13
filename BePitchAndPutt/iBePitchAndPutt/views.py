@@ -22,6 +22,16 @@ def mainpage(request):
         'user': request.user
     })
 
+#def results(request):
+#    return render_to_response(
+#
+#    'results.html',
+#    {
+#        'titlehead': 'Results for ' request.user,
+#        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
+#        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
+#    })
+
 def players(request):
     return render_to_response(
 
@@ -39,7 +49,8 @@ def player_info(request,player_id):
     'player_info.html',{
 
     'titlehead' : "Player info",
-    'pegatitle' : "Player Information",
+    'pagetitle' : "Player Information",
+
     'player': Player.objects.get(pk=player_id),
 
     })
