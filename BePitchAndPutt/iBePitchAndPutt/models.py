@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 class Player (models.Model):
     name = models.ForeignKey('auth.User')
     number_of_player = models.IntegerField()
-    birthdate = models.DateField(default=date.today)
+    birthdate = models.DateField()
     stateOrProvince = models.TextField(blank=True, null=True)
     city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
@@ -31,17 +31,31 @@ class Field(models.Model):
     number_of_holes = models.IntegerField()
     par = models.IntegerField()
 
+<<<<<<< HEAD
+=======
+    def __unicode__(self):
+        return u"%s%" % Field.FieldCode
+
+
+>>>>>>> 66f03387742cf4bc25c0a5dad0929bd1b9cc0d98
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
 
+    def __unicode__(self):
+        return u"%s%" % Hole.hole_number
 
 class Match (models.Model):
+    match_number = models.IntegerField()
+    match_h = models.TextField()
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
+    weather = models.ForeignKey
 
+    def __unicode__(self):
+        return u"%s%" % Match.match_number
 class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
@@ -65,3 +79,7 @@ class Rule (models.Model):
 class WeatherConditions (models.Model):
     windSpeed = models.IntegerField()
     windDirection = models.TextField()
+    Wind = windSpeed + "" + windDirection
+
+    def __unicode__(self):
+        return u"%s%" % WeatherConditions.Wind
