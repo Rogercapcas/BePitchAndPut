@@ -27,10 +27,9 @@ def results(request):
 
     'results.html',
     {
-        'titlehead': 'results for' request.user + '-->' request.results
-
-
-
+        'titlehead': 'Results for ' request.user,
+        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
+        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
     })
 
 def weather(request):
