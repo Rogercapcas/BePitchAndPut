@@ -1,7 +1,7 @@
 from	django.db	import	models
 from	datetime	import	date
 from django.contrib.auth.models import User
-from django.core.urlresolvers mport reverse
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -28,10 +28,8 @@ class Field(models.Model):
     telephone = models.IntegerField()
     url = models.URLField(blank=True, null=True)
     number_of_holes = models.IntegerField()
-    hole = models.ForeignKey(Hole)
     par = models.IntegerField()
-
-
+    
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
