@@ -6,47 +6,7 @@ from django.template.loader import get_template
 
 
 from django.contrib.auth.models import User
-from django.utils import simplejso
+from django.utils import timezone
 
+from .models import Player, Field, Hole, Match, Result, Rule, WeatherConditions
 # Create your views here.
-
-def mainpage(request):
-    return render_to_response(
-
-    'mainpage.html',
-    {
-        'titlehead': 'BePitchAndPutt app',
-        'pagetitle': 'Welcome to BePitchAndPutt app',
-        'contentbody': 'Your best application to see your training results',
-        'user': request.user
-    })
-
-def results(request):
-    return render_to_response(
-
-    'results.html',
-    {
-
-
-
-
-    })
-
-def weather(request):
-    return render_to_response(
-
-    'weather.html',
-    {
-
-
-
-    })
-
-def stadistics(request):
-    return render_to_response(
-
-    'stadistics.html',
-    {
-
-
-    })

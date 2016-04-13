@@ -1,12 +1,13 @@
 from	django.db	import	models
 from	datetime	import	date
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 # Create your models here.
 
 class Player (models.Model):
-    name = models.CharField(max_length=100)
+    name = models.ForeignKey('auth.User')
     number_of_player = models.IntegerField()
     birthdate = models.DateField(default=date.today)
     stateOrProvince = models.TextField(blank=True, null=True)
@@ -20,7 +21,7 @@ class Player (models.Model):
         return u"%s%" % Player.number_of_player
 
 class Field(models.Model):
-    FieldCode = models.IntegerField()
+    fieldCode = models.IntegerField()
     stateOrProvince = models.TextField(blank=True, null=True)
     city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
@@ -29,7 +30,7 @@ class Field(models.Model):
     url = models.URLField(blank=True, null=True)
     number_of_holes = models.IntegerField()
     par = models.IntegerField()
-    
+
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
@@ -45,6 +46,8 @@ class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
     handicap_variation = models.FloatField()
+    date = models.DateTimeField(default=timezone.now)
+
 
     def __unicode__(self):
         return u"$s%" % Result.match
