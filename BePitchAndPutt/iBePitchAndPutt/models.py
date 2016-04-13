@@ -2,6 +2,7 @@ from	django.db	import	models
 from	datetime	import	date
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.db.models import Sum
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Player (models.Model):
 
 class Field(models.Model):
     FieldCode = models.IntegerField()
+    field_name = models.CharField(max_length=100)
     stateOrProvince = models.TextField(blank=True, null=True)
     city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
@@ -30,25 +32,30 @@ class Field(models.Model):
     number_of_holes = models.IntegerField()
     par = models.IntegerField()
 
+    def __unicode__(self):
+        return u'%s' % self.field_name
+
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
-
+    def __unicode__(self):
+        return u'%i' % self.hole_number
 
 class Match (models.Model):
     match_number = models.IntegerField()
-    date = models.DateField()
-    match_h = models.TextField()
+    player = models.ForeignKey(Player)
+    date = models.DateTimeField()
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
     weather = models.ForeignKey
 
-class Result (models.Model):
-    match = models.ForeignKey(Match)
-    match_result = models.IntegerField()
-    handicap_variation = models.FloatField()
+    def getMatchResult(mn):
+        ModelName.objects.filter(self.match_number==mn).aggregate(Sum('hole_result'))
+
+    def __unicode__(self):
+        return u'%s' % self.match_number
 
 class Rule (models.Model):
     ruls = models.TextField()

@@ -8,7 +8,7 @@ from django.template.loader import get_template
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from .models import Player, Field, Hole, Match, Result, Rule, WeatherConditions
+from .models import Player, Field, Hole, Match,Rule, WeatherConditions
 
 
 def mainpage(request):
@@ -31,6 +31,16 @@ def mainpage(request):
 #        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
 #        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
 #    })
+def player_results(request):
+    return render_to_response(
+
+    'results.html',
+    {
+        'titlehead': "Results",
+        'pagetitle': "Players results",
+        'matches': Match.objects.all(),
+
+    })
 
 def players(request):
     return render_to_response(
@@ -50,7 +60,6 @@ def player_info(request,player_id):
 
     'titlehead' : "Player info",
     'pagetitle' : "Player Information",
-
     'player': Player.objects.get(pk=player_id),
 
     })

@@ -1,12 +1,17 @@
-<html>
-  <head>
-    <title> {{titlehead}} </title>
-  </head>
+{% extends 'basepage.html' %}
+{% block content %}
 
-  <body>
-    <h1> {{pagetitle}} </h1>
 
-    {% block content %}
-    {% endblock %}
-  </body>
-</html>
+<table>
+  <tr>
+    <tr><Strong>Forat<Strong><tr>
+      {%for match in matches %}
+        <td>{{match.hole.hole_number}}</td>
+      {%endfor%}
+    <tr><strong>Puntuació</strong></tr>
+      {%for match in matches %}
+        <td>{{match.hole_result}}</td>
+      {%endfor%}
+  </tr>
+{% endblock %}
+</table>

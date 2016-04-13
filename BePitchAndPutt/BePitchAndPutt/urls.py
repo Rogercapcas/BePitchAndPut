@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^player/$',players),
     url(r'^player/(\d+)',player_info),
+    url(r'^results/$',player_results),
 ]
