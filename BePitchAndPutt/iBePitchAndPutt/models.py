@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 # Create your models here.
 
 class Player (models.Model):
-    name = models.CharField(max_length=100)
+    name = models.TextField(max_length=100)
     number_of_player = models.IntegerField()
     birthdate = models.DateField()
     stateOrProvince = models.TextField(blank=True, null=True)
@@ -15,6 +15,9 @@ class Player (models.Model):
     zipCode = models.TextField(blank=True, null=True)
     telephone = models.IntegerField()
     handicap = models.FloatField()
+
+    def __unicode__(self):
+        return u'%s' % self.name
 
 class Field(models.Model):
     FieldCode = models.IntegerField()

@@ -22,33 +22,24 @@ def mainpage(request):
         'user': request.user
     })
 
-def results(request):
+def players(request):
     return render_to_response(
 
-    'results.html',
+    'Player.html',
     {
-        'titlehead': 'Results for ' request.user,
-        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
-        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
+
+    'titlehead' : "Players",
+    'pagetitle' : "Players",
+    'players': Player.objects.all(),
     })
 
-def weather(request):
+def player_info(request,player_id):
     return render_to_response(
 
-    'weather.html',
-    {
+    'player_info.html',{
 
-
-
-    })
-
-def stadistics(request):
-    return render_to_response(
-
-    'stadistics.html',
-    {
-
+    'titlehead' : "Player info",
+    'pegatitle' : "Player Information",
+    'player': Player.objects.get(pk=player_id),
 
     })
-=======
->>>>>>> 844833facfeb38c9b7ac79b76eaca1c5a4480a3c

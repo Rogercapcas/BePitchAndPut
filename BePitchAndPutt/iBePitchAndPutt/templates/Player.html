@@ -1,9 +1,12 @@
 {% extends 'basepage.html' %}
 {% block content %}
 
-   <p>
-     Player: {{ player.name }}
-     
+<ul>
+  {%for player in players %}
+  <li>
+    {{player.name}}
+  </li>
+  {%endfor%}
+</ul>
 
-   </p>
 {% endblock %}

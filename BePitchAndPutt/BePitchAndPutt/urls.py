@@ -20,5 +20,6 @@ from iBePitchAndPutt.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^results/',results, name='results'),
+    url(r'^player/$',players),
+    url(r'^player/(\d+)',player_info),
 ]
