@@ -88,7 +88,7 @@ def field (request):
     model = Field
     return render_to_response(
 
-    'field.html',
+    'Field.html',
     {
     'titlehead': "Fields",
     'pagetitle': "Fields",
@@ -106,22 +106,20 @@ def field_info(request, FieldCode):
     })
 
 def rules (request):
-    model = Rule
     return render_to_response(
 
     'rules.html',
     {
         'titlehead': 'Rules',
         'pagetitle':'Rules of last version',
-        'rules': Rule.objects.get(self),
+        'rules': Rule.objects.all(),
     })
 def actualWeather (request):
-    moldel = WeatherConditions
     return render_to_response(
 
-    'WeatherConditions.html',
+    'weatherConditions.html',
     {
         'titlehead': 'Weather',
         'pagetitle': 'Weather conditions',
-        'weather': WeatherConditions.objects.get(self),
+        'weather': WeatherConditions.objects.all(),
     })

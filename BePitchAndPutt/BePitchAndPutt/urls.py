@@ -22,5 +22,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^player/$',players),
     url(r'^player/(\d+)',player_info),
-    url(r'^results/$',player_results),
+    url(r'^holes/$',holes),
+    url(r'^holes/$(\d+)',hole_info),
+    url(r'^field/$',field),
+    url(r'^field/$(\d+)',field_info),
+    url(r'^rules/$',rules),
+    url(r'^actualWeather/$',actualWeather),
+
 ]
