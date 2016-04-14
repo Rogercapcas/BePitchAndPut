@@ -22,7 +22,10 @@ def mainpage(request):
         'contentbody': 'Your best application to see your training results',
         'user': request.user
     })
-
+def pdf (request):
+    return render_to_response(
+    'pdf.html',
+    )
 #def results(request):
 #    return render_to_response(
 #
@@ -36,7 +39,6 @@ def mainpage(request):
 
 def player_results(request, player_id, match_number):
     return render_to_response(
-
 
     'results.html',
     {
