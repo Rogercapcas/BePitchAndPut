@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^rules/$',rules),
     url(r'^actualWeather/$',actualWeather),
     url(r'^results/(\d+)/(\d+)$',player_results),
-
+    url(r'^$', mainpage, name='home'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 ]
