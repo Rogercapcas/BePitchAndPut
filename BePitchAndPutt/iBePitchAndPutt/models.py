@@ -61,3 +61,7 @@ class Match (models.Model):
 
 class Rule (models.Model):
     rules = models.TextField()
+
+class WeatherConditions (models.Model):
+    windSpeed = models.FloatField()
+    windDirection = models.TextField()
