@@ -96,7 +96,11 @@ class WeatherClient(object):
 
 class WeatherConditions (models.Model):
     global api_key
+<<<<<<< HEAD
     api_key = models.TextField(default = 'dc9eb5860cc66ad2')
+=======
+    api_key  = 'dc9eb5860cc66ad2'
+>>>>>>> 6c820f924ace23319c90c176c7d91762b40654fd
     weatherclient = WeatherClient(api_key)
     windSpeed = weatherclient.conditions("Massoteres")[wind_kph]
     windDirection = weatherclient.conditions("Massoteres")[wind_dir]
