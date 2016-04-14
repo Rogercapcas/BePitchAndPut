@@ -77,7 +77,7 @@ def holes(request):
 def hole_info (request, hole_number):
     return render_to_response(
 
-    'hole_info.html',
+    'holes_info.html',
     {
         'titlehead' : "Hole info",
         'pagetitle' : "Hole information",
@@ -97,7 +97,7 @@ def field (request):
 
 def field_info(request, FieldCode):
     return render_to_response(
-    'field_info.html',
+    'Field_info.html',
     {
         'titlehead':'Field info',
         'pagetitle': 'Field imformation',

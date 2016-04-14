@@ -2,16 +2,18 @@
 {% block content %}
 
 
-<table>
+<table border=1 cellpadding=10>
+
+    <th>Forat</th>
+    {%for match in matches %}
+      <th>{{match.hole.hole_number}}</th>
+    {%endfor%}
+
   <tr>
-    <tr><Strong>Forat<Strong><tr>
-      {%for match in matches %}
-        <td>{{match.hole.hole_number}}</td>
-      {%endfor%}
-    <tr><strong>Puntuació</strong></tr>
+    <td><strong>Puntuació</strong></td>
       {%for match in matches %}
         <td>{{match.hole_result}}</td>
       {%endfor%}
   </tr>
-{% endblock %}
 </table>
+{% endblock %}

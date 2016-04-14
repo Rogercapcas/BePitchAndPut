@@ -23,10 +23,11 @@ urlpatterns = [
     url(r'^player/$',players),
     url(r'^player/(\d+)',player_info),
     url(r'^holes/$',holes),
-    url(r'^holes/$(\d+)',hole_info),
+    url(r'^holes/(\d+)',hole_info),
     url(r'^field/$',field),
-    url(r'^field/$(\d+)',field_info),
+    url(r'^field/(\d+)',field_info),
     url(r'^rules/$',rules),
     url(r'^actualWeather/$',actualWeather),
+    url(r'^results/$',player_results),
 
 ]
