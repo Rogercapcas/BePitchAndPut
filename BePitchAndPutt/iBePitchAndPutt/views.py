@@ -9,7 +9,7 @@ from django.db.models import Sum
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from .models import Player, Field, Hole, Match,Rule, WeatherConditions
+from .models import Player, Field, Hole, Match,Rule
 
 
 def mainpage(request):
@@ -128,5 +128,5 @@ def actualWeather (request):
     {
         'titlehead': 'Weather',
         'pagetitle': 'Weather conditions',
-        'weather': WeatherConditions.objects.all(),
+        'weather': "EI",
     })
