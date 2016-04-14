@@ -3,6 +3,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, Http404
 from django.template import Context
 from django.template.loader import get_template
+from django.db.models import Sum
 
 
 from django.contrib.auth.models import User
@@ -36,12 +37,14 @@ def mainpage(request):
 def player_results(request, player_id, match_number):
     return render_to_response(
 
+
     'results.html',
     {
+
         'titlehead': "Results",
-        'pagetitle': "Players results",
-        #'player_name': Match.objects.filter(player=Player.objects.get().name),
-        'matches':Match.objects.filter(player=player_id,match_number= match_number).all(),
+        'pagetitle': Player.objects.get(pk=player_id),
+        'matches': Match.objects.filter(player=player_id,match_number= match_number).all(),
+        'match_result' : Match.objects.filter(player=player_id,match_number= match_number).aggregate(Sum('hole_result')),
 
     })
 
