@@ -1,8 +1,8 @@
 {% extends 'basepage.html' %}
 {% block content %}
 
-
 <table border=1 cellpadding=10>
+
 
     <th>Forat</th>
     {%for match in matches %}
@@ -15,5 +15,7 @@
         <td>{{match.hole_result}}</td>
       {%endfor%}
   </tr>
+
 </table>
+
 {% endblock %}

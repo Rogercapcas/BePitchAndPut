@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^field/(\d+)',field_info),
     url(r'^rules/$',rules),
     url(r'^actualWeather/$',actualWeather),
-    url(r'^results/$',player_results),
+    url(r'^results/(\d+)/(\d+)$',player_results),
 
 ]
