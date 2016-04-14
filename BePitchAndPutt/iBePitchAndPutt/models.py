@@ -63,5 +63,6 @@ class Rule (models.Model):
     rules = models.TextField()
 
 class WeatherConditions (models.Model):
+    date = models.TextField(default='today')
     windSpeed = models.FloatField()
     windDirection = models.TextField()

@@ -26,16 +26,6 @@ def pdf (request):
     return render_to_response(
     'pdf.html',
     )
-#def results(request):
-#    return render_to_response(
-#
-#    'results.html',
-#    {
-#        'titlehead': 'Results for ' request.user,
-#        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
-#        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
-#    })
-
 
 def player_results(request, player_id, match_number):
     return render_to_response(
@@ -71,7 +61,6 @@ def player_info(request,player_id):
     })
 
 def holes(request):
-    model = Hole
     return render_to_response(
 
     'Hole.html',
@@ -92,7 +81,6 @@ def hole_info (request, hole_number):
     })
 
 def field (request):
-    model = Field
     return render_to_response(
 
     'Field.html',
@@ -107,7 +95,7 @@ def field_info(request, FieldCode):
     'Field_info.html',
     {
         'titlehead':'Field info',
-        'pagetitle': 'Field imformation',
+        'pagetitle': 'Field information',
         'field': Field.objects.get(pk=FieldCode),
 
     })
@@ -128,5 +116,5 @@ def actualWeather (request):
     {
         'titlehead': 'Weather',
         'pagetitle': 'Weather conditions',
-        'weather': "EI",
+        'weather': weatherConditions.objects.get(pk=today),
     })
