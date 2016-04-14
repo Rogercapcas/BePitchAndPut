@@ -33,14 +33,15 @@ def mainpage(request):
 #    })
 
 
-def player_results(request, player_id, match_number):
+def player_results(request, name, match_number):
     return render_to_response(
 
     'results.html',
     {
         'titlehead': "Results",
         'pagetitle': "Players results",
-        'matches':Match.objects.filter(player=player_id,match_number= match_number).all(),
+        'player_name': Player.objects.get(name=name),
+        'matches':Match.objects.filter(player=Player.objects.get(name=name),match_number= match_number).all(),
 
     })
 
