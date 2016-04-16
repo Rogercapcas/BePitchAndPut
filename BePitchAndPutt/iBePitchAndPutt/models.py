@@ -5,11 +5,17 @@ from django.contrib.auth.models import User
 
 class Player (models.Model):
     name = models.CharField(max_length=100)
-    age = models.IntegerField()
+    number_of_player = models.IntegerField()
+    birthdate = models.DateField(default=date.today)
+    stateOrProvince = models.TextField(blank=True, null=True)
+    city = models.TextField()
+    street = models.TextField(blank=True, null=True)
+    zipCode = models.TextField(blank=True, null=True)
+    telephone = models.IntegerField()
     handicap = models.FloatField()
 
     def __unicode__(self):
-        return u"%s%" % Player.name
+        return u"%s%" % Player.number_of_player
 
 class Field(models.Model):
     city = models.CharField(max_length=100)
