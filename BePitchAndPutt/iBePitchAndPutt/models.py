@@ -25,13 +25,27 @@ class Hole (models.Model):
 
 
 class Match (models.Model):
-
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
-    total_result = models.IntegerField()
+
+class Result (models.Model):
+    match = models.ForeignKey(Match)
+    match_result = models.IntegerField()
+    handicap_variation = models.FloatField()
+
+    def __unicode__(self):
+        return u"$s%" % Result.match
+
+    def get_match_result (self):
+        return u"%s%" % Result.match_result
+
 
 class Rule (models.Model):
     rules = models.TextField()
 
     def __unicode__(self):
         return u"%s%" % self.rules
+
+class WeatherConditions (models.Model):
+    windSpeed = models.IntegerField()
+    windDirection = models.TextField()
