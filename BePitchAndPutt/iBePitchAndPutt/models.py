@@ -1,7 +1,7 @@
 from	django.db	import	models
 from	datetime	import	date
 from django.contrib.auth.models import User
-from django.core.urlresolvers import mport reverse
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -30,18 +30,28 @@ class Field(models.Model):
     number_of_holes = models.IntegerField()
     par = models.IntegerField()
 
+    def __unicode__(self):
+        return u"%s%" % Field.FieldCode
+
+class Match (models.Model):
+    match_number = models.IntegerField()
+    match_h = models.TextField()
+    hole = models.ForeignKey(Hole)
+    hole_result = models.IntegerField()
+    weather = models.ForeignKey
+
+    def __unicode__(self):
+        return u"%s%" % Match.match_number
+
 class Hole (models.Model):
     field = models.ForeignKey(Field)
+    match = models.ForeignKey(Match)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
 
-class Match (models.Model)
-    match_number = models.IntegerField()
-    match_h = models.Time()
-    hole = models.ForeignKey(Hole)
-    hole_result = models.IntegerField()
-    weather = models.ForeignKey
+    def __unicode__(self):
+        return u"%s%" % Hole.hole_number
 
 class Result (models.Model):
     match = models.ForeignKey(Match)
@@ -64,3 +74,7 @@ class Rule (models.Model):
 class WeatherConditions (models.Model):
     windSpeed = models.IntegerField()
     windDirection = models.TextField()
+    Wind = windSpeed + "" + windDirection
+
+    def __unicode__(self):
+        return u"%s%" % WeatherConditions.Wind
