@@ -7,6 +7,8 @@ class Player (models.Model):
     age = models.IntegerField()
     handicap = models.FloatField()
 
+    def __unicode__(self):
+        return u"%s%" % Player.name    
 
 class Field(models.Model):
     holes = models.IntegerField()
@@ -21,7 +23,12 @@ class Hole (models.Model):
 
 
 class Match (models.Model):
-
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
     total_result = models.IntegerField()
+
+classe Rules (models.Model):
+    rules = models.TextField()
+    
+    def __unicode__(self):
+        return u"%s%" % self.rules
