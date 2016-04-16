@@ -27,7 +27,7 @@ class Match (models.Model):
     hole_result = models.IntegerField()
     total_result = models.IntegerField()
 
-classe Rules (models.Model):
+class Rules (models.Model):
     rules = models.TextField()
     
     def __unicode__(self):
