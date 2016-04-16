@@ -20,3 +20,33 @@ def mainpage(request):
         'contentbody': 'Your best application to see your training results',
         'user': request.user
     })
+
+def results(request):
+    return render_to_response(
+
+    'results.html',
+    {
+
+
+
+
+    })
+
+def weather(request):
+    return render_to_response(
+
+    'weather.html',
+    {
+
+
+
+    })
+
+def stadistics(request):
+    return render_to_response(
+
+    'stadistics.html',
+    {
+
+
+    })
