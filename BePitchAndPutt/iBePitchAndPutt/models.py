@@ -37,7 +37,6 @@ class Field(models.Model):
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
-    match = models.ForeignKey(Match)
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
 
