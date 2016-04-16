@@ -28,17 +28,13 @@ class Field(models.Model):
     telephone = models.IntegerField()
     url = models.URLField(blank=True, null=True)
     number_of_holes = models.IntegerField()
-    hole = models.ForeignKey(Hole)
     par = models.IntegerField()
-
 
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
-
-
 
 class Match (models.Model)
     match_number = models.IntegerField()
