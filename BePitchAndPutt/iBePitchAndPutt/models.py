@@ -1,7 +1,7 @@
 from	django.db	import	models
 from	datetime	import	date
 from django.contrib.auth.models import User
-from django.core.urlresolvers mport reverse
+from django.core.urlresolvers import mport reverse
 
 # Create your models here.
 
@@ -46,7 +46,7 @@ class Match (models.Model)
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
     weather = models.ForeignKey
-    
+
 class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
