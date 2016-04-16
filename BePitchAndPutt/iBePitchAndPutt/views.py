@@ -26,7 +26,7 @@ def results(request):
 
     'results.html',
     {
-
+        'titlehead': 'results for' request.user + '-->' request.results
 
 
 

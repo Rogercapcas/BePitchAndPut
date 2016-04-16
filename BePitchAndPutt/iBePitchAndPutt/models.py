@@ -16,9 +16,6 @@ class Player (models.Model):
     telephone = models.IntegerField()
     handicap = models.FloatField()
 
-    def __unicode__(self):
-        return u"%s%" % Player.number_of_player
-
 class Field(models.Model):
     FieldCode = models.IntegerField()
     stateOrProvince = models.TextField(blank=True, null=True)
@@ -30,49 +27,29 @@ class Field(models.Model):
     number_of_holes = models.IntegerField()
     par = models.IntegerField()
 
-    def __unicode__(self):
-        return u"%s%" % Field.FieldCode
-
-
 class Hole (models.Model):
     field = models.ForeignKey(Field)
     hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
 
-    def __unicode__(self):
-        return u"%s%" % Hole.hole_number
 
 class Match (models.Model):
     match_number = models.IntegerField()
+    birthdate = models.DateField()
     match_h = models.TextField()
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
     weather = models.ForeignKey
 
-    def __unicode__(self):
-        return u"%s%" % Match.match_number
 class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
     handicap_variation = models.FloatField()
 
-    def __unicode__(self):
-        return u"$s%" % Result.match
-
-    def get_match_result (self):
-        return u"%s%" % Result.match_result
-
-
 class Rule (models.Model):
-    rules = models.TextField()
-
-    def __unicode__(self):
-        return u"%s%" % self.rules
+    ruls = models.TextField()
 
 class WeatherConditions (models.Model):
     windSpeed = models.IntegerField()
     windDirection = models.TextField()
-
-    def __unicode__(self):
-        return u"%s%" % WeatherConditions.Wind
