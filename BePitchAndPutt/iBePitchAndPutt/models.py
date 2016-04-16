@@ -8,7 +8,7 @@ from django.core.urlresolvers mport reverse
 class Player (models.Model):
     name = models.CharField(max_length=100)
     number_of_player = models.IntegerField()
-    birthdate = models.DateField(default=date.today)
+    birthdate = models.DateField()
     stateOrProvince = models.TextField(blank=True, null=True)
     city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
@@ -39,10 +39,14 @@ class Hole (models.Model):
     handicap_hole = models.IntegerField()
 
 
-class Match (models.Model):
+
+class Match (models.Model)
+    match_number = models.IntegerField()
+    match_h = models.Time()
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
-
+    weather = models.ForeignKey
+    
 class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
