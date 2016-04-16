@@ -1,5 +1,7 @@
-from django.db import models
+from	django.db	import	models
+from	datetime	import	date
 from django.contrib.auth.models import User
+from django.core.urlresolvers mport reverse
 
 # Create your models here.
 
@@ -8,7 +10,7 @@ class Player (models.Model):
     number_of_player = models.IntegerField()
     birthdate = models.DateField(default=date.today)
     stateOrProvince = models.TextField(blank=True, null=True)
-    city = models.TextField()
+    city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
     zipCode = models.TextField(blank=True, null=True)
     telephone = models.IntegerField()
@@ -18,8 +20,15 @@ class Player (models.Model):
         return u"%s%" % Player.number_of_player
 
 class Field(models.Model):
-    city = models.CharField(max_length=100)
-    holes = models.IntegerField()
+    FieldCode = models.IntegerField()
+    stateOrProvince = models.TextField(blank=True, null=True)
+    city = models.TextField(max_length=100)
+    street = models.TextField(blank=True, null=True)
+    zipCode = models.TextField(blank=True, null=True)
+    telephone = models.IntegerField()
+    url = models.URLField(blank=True, null=True)
+    number_of_holes = models.IntegerField()
+    hole = models.ForeignKey(Hole)
     par = models.IntegerField()
 
 
