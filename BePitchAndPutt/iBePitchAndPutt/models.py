@@ -33,6 +33,17 @@ class Field(models.Model):
     def __unicode__(self):
         return u"%s%" % Field.FieldCode
 
+
+class Hole (models.Model):
+    field = models.ForeignKey(Field)
+    hole_number = models.IntegerField()
+    match = models.ForeignKey(Match)
+    meters = models.IntegerField()
+    handicap_hole = models.IntegerField()
+
+    def __unicode__(self):
+        return u"%s%" % Hole.hole_number
+
 class Match (models.Model):
     match_number = models.IntegerField()
     match_h = models.TextField()
@@ -42,17 +53,6 @@ class Match (models.Model):
 
     def __unicode__(self):
         return u"%s%" % Match.match_number
-
-class Hole (models.Model):
-    field = models.ForeignKey(Field)
-    match = models.ForeignKey(Match)
-    hole_number = models.IntegerField()
-    meters = models.IntegerField()
-    handicap_hole = models.IntegerField()
-
-    def __unicode__(self):
-        return u"%s%" % Hole.hole_number
-
 class Result (models.Model):
     match = models.ForeignKey(Match)
     match_result = models.IntegerField()
