@@ -6,9 +6,11 @@ from django.template.loader import get_template
 
 
 from django.contrib.auth.models import User
-from django.utils import simplejso
+from django.utils import timezone
 
+from .models import Player, Field, Hole, Match, Result, Rule, WeatherConditions
 # Create your views here.
+<<<<<<< HEAD
 
 def mainpage(request):
     return render_to_response(
@@ -50,3 +52,5 @@ def stadistics(request):
 
 
     })
+=======
+>>>>>>> 844833facfeb38c9b7ac79b76eaca1c5a4480a3c
