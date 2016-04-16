@@ -73,7 +73,6 @@ class Rule (models.Model):
 class WeatherConditions (models.Model):
     windSpeed = models.IntegerField()
     windDirection = models.TextField()
-    Wind = windSpeed + "" + windDirection
 
     def __unicode__(self):
         return u"%s%" % WeatherConditions.Wind
