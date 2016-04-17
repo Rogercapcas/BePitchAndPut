@@ -60,8 +60,39 @@ class Match (models.Model):
 class Rule (models.Model):
     rules = models.TextField()
 
+class WeatherClient(object):
+    """Will access wunderground to gather weather information
+    Provides access to wunderground API
+    (http://www.wunderground.com/weather/api)
+    Provides methods:
+        conditions
+    """
+
+    url_base = 'http://api.wunderground.com/api/'
+    url_services = {
+        "conditions": "/conditions/q/CA/"
+    }
+
+    def __init__(self, apikey):
+        super(WeatherClient, self).__init__()
+        self.api_key = apikey
+
+
+    def conditions(self, location):
+        """
+        Accesses wunderground conditions information for the given location
+        """
+        resp_format = "json"
+        url = WeatherClient.url_base + api_key + \
+            WeatherClient.url_services[
+                "conditions"] + location + "." + resp_format
+        r = requests.get(url)
+
+        jsondata = json.loads(r.text)
+        return jsondata["conditions"]
+
 class WeatherConditions (models.Model):
-    today_date = models.DateField()
-    place = models.TextField(max_length=100)
-    windSpeed = models.IntegerField()
-    windDirection = models.TextField()
+    api_key = dc9eb5860cc66ad2
+    weatherclient = WeatherClient(api_key)
+    windSpeed = get_wind_direction(weatherclient.conditions("Massoteres"))
+    windDirection = get_wind_direction(weatherclient.conditions("Massoteres"))
