@@ -12,12 +12,12 @@ import sys
 import requests
 import json
 
-api_key = None  # If assigned won't read argv[1]
+api_key = dc9eb5860cc66ad2
 
 
 class WeatherClient(object):
 
-    
+
     """Will access wunderground to gather weather information
     Provides access to wunderground API
     (http://www.wunderground.com/weather/api)
@@ -48,24 +48,13 @@ class WeatherClient(object):
         jsondata = json.loads(r.text)
         return jsondata["conditions"]
 
+def get_wind_direction(conditions):
+    return conditions["wind_dir"]
 
-def print_conditions(conditions):
-    """
-    Prints an conditions received as a dict
-    """
-    print "Wind conditions:"
-    print "Wind direction", conditions["wind_dir"]
-
-    print "Wind speed:"
-    print "Average on this date", conditions["wind_kph"]
-
+def get_wind_speed (conditions):
+    return coditions["wind_kph"]
 
 if __name__ == "__main__":
-    if not api_key:
-        try:
-            api_key = sys.argv[1]
-        except IndexError:
-            print "Must provide api key in code or cmdline arg"
-
     weatherclient = WeatherClient(api_key)
-    print_conditions(weatherclient.conditions("Guissona"))
+    win_direction = get_wind_direction(weatherclient.conditions("Guissona"))
+    wind_speed = get_wind_speed(weatherclient.conditions("Guissona"))
