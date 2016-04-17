@@ -52,7 +52,7 @@ class Match (models.Model):
     weather = models.ForeignKey
 
     def getMatchResult(mn):
-        ModelName.objects.filter(self.match_number==mn).aggregate(Sum('hole_result'))
+        return ModelName.objects.filter(self.match_number==mn).aggregate(Sum('hole_result'))
 
     def __unicode__(self):
         return u'%s' % self.match_number
@@ -61,6 +61,9 @@ class Rule (models.Model):
     rules = models.TextField()
 
 class WeatherClient(object):
+    import sys
+    import requests
+    import json
     """Will access wunderground to gather weather information
     Provides access to wunderground API
     (http://www.wunderground.com/weather/api)
