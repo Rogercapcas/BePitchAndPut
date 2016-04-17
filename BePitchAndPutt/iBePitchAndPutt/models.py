@@ -37,7 +37,7 @@ class Field(models.Model):
 
 class Hole (models.Model):
     field = models.ForeignKey(Field)
-    hole_number = models.IntegerField()
+    hole_number = models.IntegerField(default=date.today)
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
     def __unicode__(self):
@@ -61,5 +61,7 @@ class Rule (models.Model):
     rules = models.TextField()
 
 class WeatherConditions (models.Model):
+    today_date = models.DateField()
+    place = models.TextField(max_length=100)
     windSpeed = models.IntegerField()
     windDirection = models.TextField()
