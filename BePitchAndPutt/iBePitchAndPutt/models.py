@@ -58,7 +58,7 @@ class Match (models.Model):
         return u'%s' % self.match_number
 
 class Rule (models.Model):
-    ruls = models.TextField()
+    rules = models.TextField()
 
 class WeatherConditions (models.Model):
     windSpeed = models.IntegerField()

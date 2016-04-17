@@ -31,6 +31,8 @@ def mainpage(request):
 #        'pagetitle': 'On ': request.results.match.date + ' at ' + request.results.match_h
 #        'contentbody': 'Result:' + request.results.match_result + '. Handicap variation:' + request.results.handicap_variation
 #    })
+
+
 def player_results(request):
     return render_to_response(
 
@@ -39,7 +41,6 @@ def player_results(request):
         'titlehead': "Results",
         'pagetitle': "Players results",
         'matches': Match.objects.all(),
-
     })
 
 def players(request):
@@ -47,19 +48,80 @@ def players(request):
 
     'Player.html',
     {
-
-    'titlehead' : "Players",
-    'pagetitle' : "Players",
-    'players': Player.objects.all(),
+        'titlehead' : "Players",
+        'pagetitle' : "Players",
+        'players': Player.objects.all(),
     })
 
 def player_info(request,player_id):
     return render_to_response(
 
-    'player_info.html',{
+    'player_info.html',
+    {
+        'titlehead' : "Player info",
+        'pagetitle' : "Player Information",
+        'player': Player.objects.get(pk=player_id),
+    })
 
-    'titlehead' : "Player info",
-    'pagetitle' : "Player Information",
-    'player': Player.objects.get(pk=player_id),
+def holes(request):
+    model = Hole
+    return render_to_response(
 
+    'Hole.html',
+    {
+        'titlehead' : "Holes",
+        'pagetitle' : "Holes",
+        'holes': Hole.objects.all(),
+    })
+
+def hole_info (request, hole_number):
+    return render_to_response(
+
+    'hole_info.html',
+    {
+        'titlehead' : "Hole info",
+        'pagetitle' : "Hole information",
+        'hole' : Hole.objects.get(pk=hole_number),
+    })
+
+def field (request):
+    model = Field
+    return render_to_response(
+
+    'field.html',
+    {
+    'titlehead': "Fields",
+    'pagetitle': "Fields",
+    'fields': Field.objects.all(),
+    })
+
+def field_info(request, FieldCode):
+    return render_to_response(
+    'field_info.html',
+    {
+        'titlehead':'Field info',
+        'pagetitle': 'Field imformation',
+        'field': Field.objects.get(pk=FieldCode),
+
+    })
+
+def rules (request):
+    model = Rule
+    return render_to_response(
+
+    'rules.html',
+    {
+        'titlehead': 'Rules',
+        'pagetitle':'Rules of last version',
+        'rules': Rule.objects.get(self),
+    })
+def actualWeather (request):
+    moldel = WeatherConditions
+    return render_to_response(
+
+    'WeatherConditions.html',
+    {
+        'titlehead': 'Weather',
+        'pagetitle': 'Weather conditions',
+        'weather': WeatherConditions.objects.get(self),
     })
