@@ -3,7 +3,9 @@ from	datetime	import	date
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import Sum
-
+import sys
+import requests
+import json
 # Create your models here.
 
 class Player (models.Model):
@@ -61,9 +63,7 @@ class Rule (models.Model):
     rules = models.TextField()
 
 class WeatherClient(object):
-    import sys
-    import requests
-    import json
+
     """Will access wunderground to gather weather information
     Provides access to wunderground API
     (http://www.wunderground.com/weather/api)
