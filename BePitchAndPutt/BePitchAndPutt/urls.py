@@ -31,4 +31,41 @@ urlpatterns = [
     url(r'^results/(\d+)/(\d+)$',player_results),
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
+
+
+
+    #RESTful API
+    url(r'^api/auth/',
+        include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/player/$',
+        APIPlayerList.as_view(), name='player-list')
+    url(r'^api/player/(?P<pk>\d+)/$',
+        APIPlayerDetail.as_view(), name='player-detail',)
+    url(r'^api/hole/$',
+        APIHoleList.as_view(), name='hole-list')
+    url(r'^api/hole/(?P<pk>\d+)/$',
+        APIHoleDetail.as_view(), name='hole-detail',)
+    url(r'^api/field/$',
+        APIPlayerList.as_view(), name='field-list')
+    url(r'^api/field/(?P<pk>\d+)/$',
+        APIFieldDetail.as_view(), name='field-detail',)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]
+
+

@@ -9,8 +9,11 @@ from django.db.models import Sum
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from .models import Player, Field, Hole, Match,Rule
+from rest_framework import generics, permissions
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from models import Player, Field, Hole, Match,Rule
+from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, RuleSerializer, WeatherConditionsSerializer
 
 def mainpage(request):
     return render_to_response(
@@ -116,5 +119,71 @@ def actualWeather (request):
     {
         'titlehead': 'Weather',
         'pagetitle': 'Weather conditions',
-        'weather': weatherConditions.objects.get(pk=today),
+        'weather': WeatherConditions.objects.get(pk=today),
     })
+
+
+#RESTful API
+
+
+class IsOwnerOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        # Instance must have an attribute named `owner`.
+        return obj.user == request.user
+
+
+class APIPlayerList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    model = Player
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+
+class APIPlayerDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Player
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+
+class APIFieldList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    model = Field
+    queryset = Field.objects.all()
+    serializer_class = FieldSerializer
+
+class APIFieldDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Field
+    queryset = Field.objects.all()
+    serializer_class = FieldSerializer
+
+class APIHoleList(generics.ListCreateAPIView)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    model = Hole
+    queryset = Hole.objects.all()
+    serializer_class = HoleSerializer
+
+class APIHoleDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Hole
+    queryset = Hole.objects.all()
+    serializer_class = HoleSerializer
+
+
+
+class APIMatchList(generics.ListCreateAPIView)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    model = Match
+    queryset = Match.objects.all()
+    serializer_class = MatchSerializer
+
+class APIMatchDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Match
+    queryset = Match.objects.all()
+    serializer_class = MatchSerializer
+
