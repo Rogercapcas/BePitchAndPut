@@ -8,12 +8,12 @@ from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from rest_framework import generics, permissions
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+#from rest_framework import generics, permissions
+#from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from models import Player, Field, Hole, Match,Rule
-from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, RuleSerializer, WeatherConditionsSerializer
-
+from models import Player, Field, Hole, Match, Throw 
+from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer
+"""
 
 def mainpage(request):
     return render_to_response(
@@ -42,49 +42,34 @@ def player_results(request, player_id, match_number):
         'match_result' : Match.objects.filter(player=player_id,match_number= match_number).aggregate(Sum('hole_result')),
 
     })
-
+"""
 class PlayerList (ListView):
     model = Player
     queryset = Player.objects.all()
-    context_object_name='player_list',
-    template_name='iBePitchAndPutt/Player.html'
+    context_object_name='Player_list'
+    template_name='Player.html'
 
 
 class PlayerDetail(DetailView):
     model = Player
-    template_name = 'iBePitchAndPutt/Player_info.html'   
+    template_name = 'Player_info.html' 
+
     def get_context_data(self, **kwargs):
         context = super(PlayerDetail, self).get_context_data(**kwargs)
         return context
 
-
-class FieldList (ListView):
-    model = Field
-    queryset = Field.objects.all()
-    context_object_name='field_list',
-    template_name='iBePitchAndPutt/Field.html'
-
-
-class FieldDetail(DetailView):
-    model = Field
-    template_name = 'iBePitchAndPutt/Field_info.html'   
-    def get_context_data(self, **kwargs):
-        context = super(FieldDetail, self).get_context_data(**kwargs)
-        return context
-
-class HoleDetail(DetailView):
-    model = Hole
-    template_name = 'iBePitchAndPutt/Hole_info.html'   
-    def get_context_data(self, **kwargs):
-        context = super(HoleDetail, self).get_context_data(**kwargs)
-        return context
-
-
 class MatchDetail(DetailView):
     model = Match
-    template_name = 'iBePitchAndPutt/Match_info.html'   
+    template_name = 'Match_info.html'   
     def get_context_data(self, **kwargs):
         context = super(MatchDetail, self).get_context_data(**kwargs)
+        return context
+
+class ThrowDetail(DetailView):
+    model = Throw
+    template_name = 'Throw_info.html'
+    def get_context_data(self, **kwargs):
+        context = super(ThrowDetail, self).get_context_data(**kwargs)
         return context
 
 def rules (request):
@@ -94,8 +79,35 @@ def rules (request):
     {
         'titlehead': 'Rules',
         'pagetitle':'Rules of last version',
-        'rules': Rule.objects.all(),
+        
     })
+"""
+
+class FieldList (ListView):
+    model = Field
+    queryset = Field.objects.all()
+    context_object_name='field_list'
+    template_name='Field.html'
+
+
+class FieldDetail(DetailView):
+    model = Field
+    template_name = 'Field_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(FieldDetail, self).get_context_data(**kwargs)
+        return context
+
+class HoleDetail(DetailView):
+    model = Hole
+    template_name = 'Hole_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(HoleDetail, self).get_context_data(**kwargs)
+        return context
+
+
+
+
+
 def actualWeather (request):
     return render_to_response(
 
@@ -173,3 +185,4 @@ class APIMatchDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Match
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
+"""

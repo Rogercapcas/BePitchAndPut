@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework.relations import HyperlinkedRelatedField, HyperlinkedIdentityField
 from rest_framework.serializers import HyperlinkedModelSerializer
-from models import Player, Field, Hole, Match, Rule, WeatherConditions
+from models import Player, Field, Hole, Match, WeatherConditions
 
 
 class PlayerSerializer(HyperlinkedModelSerializer):
@@ -32,12 +32,6 @@ class MatchSerializer(HyperlinkedModelSerializer):
 		model = Match
 		fields = ('user','match_number','player','date','hole','hole_result','weather')
 
-class RuleSerializer(HyperlinkedModelSerializer):
-
-	user = CharField(read_only=True)
-	class Meta:
-		model = Rule
-		fields = ('user','rules');
 
 
 class WeatherConditionsSerializer(HyperlinkedModelSerializer):

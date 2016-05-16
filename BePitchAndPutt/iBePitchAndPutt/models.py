@@ -21,6 +21,9 @@ class Player (models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
+    def get_absolute_url(self):
+        return reverse('PlayerDetail',kwargs={'pk':self.pk})
+
 
 class Field(models.Model):
     FieldCode = models.IntegerField()
@@ -49,25 +52,19 @@ class Match (models.Model):
     match_number = models.IntegerField()
     player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
-    hole = models.ForeignKey(Hole)
-    hole_result = models.IntegerField()
     weather = models.ForeignKey
 
-    def getMatchResult(mn):
-        return ModelName.objects.filter(self.match_number==mn).aggregate(Sum('hole_result'))
-
     def __unicode__(self):
-        return u'%s' % self.match_number
+        return u'%i' % self.match_number
 
 class Throw (models.Model):
-    hole = models.ForeignKey(Hole)
-    match = models.ForeignKey(Match)
+    hole = models.ForeignKey(Hole,null=True, related_name='throws')
+    match = models.ForeignKey(Match,null=True, related_name='throws')
     score = models.IntegerField()
 
     def __unicode__(self):
-        return u'%s%s' % (self.hole, self.match,)
-    def get_score (h, m):
-        return ModelName.objects.filter(self.hole == h, self.match == m).score
+        return u'%i%i' % (self.hole, self.match,)
+
 
 class WeatherConditions (models.Model):
     date = models.TextField(default='today')

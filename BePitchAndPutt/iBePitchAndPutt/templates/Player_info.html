@@ -15,9 +15,9 @@
   <p>
   <ul>
     {% for match in player.matches.all %}
-        <li><a href="{% url 'iBePitchAndPutt:Match_detail' match.id   g%}">
+        <li><a href="{% url 'Match_detail' match.id   %}">
             {{ match.id }} -- {{ match.date }}</a></li>
-    {% empty %}<li>Sorry, no dishes for this restaurant yet.</li>
+    {% empty %}<li>Sorry, no matches for this player yet.</li>
     {% endfor %}
   </ul>
 </p>

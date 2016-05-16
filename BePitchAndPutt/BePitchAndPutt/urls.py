@@ -22,6 +22,14 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
+    url(r'^rules/',rules),
+    url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
+    url(r'throw/(?P<pk>\d+)/$', ThrowDetail.as_view(), name="Throw_detail"),
+]
+
+'''  
+
+    
 
 
 
@@ -34,7 +42,7 @@ urlpatterns = [
     url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
 
 
-    url(r'^rules/',rules),
+    
     url(r'^actualWeather/$',actualWeather),
     url(r'^results/(?P<pk>\d+)/$',player_results),
     url(r'^$', mainpage, name='home'),
@@ -55,6 +63,4 @@ urlpatterns = [
     url(r'^api/field/$',
         APIPlayerList.as_view(), name='field-list')
     url(r'^api/field/(?P<pk>\d+)/$',
-        APIFieldDetail.as_view(), name='field-detail',)
-
-]
+        APIFieldDetail.as_view(), name='field-detail',)'''
