@@ -48,6 +48,11 @@ class Hole (models.Model):
     def __unicode__(self):
         return u'%i' % self.hole_number
 
+class WeatherConditions (models.Model):
+    date = models.TextField(default='today')
+    windSpeed = models.FloatField()
+    windDirection = models.TextField()
+
 class Match (models.Model):
     match_number = models.AutoField(primary_key=True, unique=True)
     player = models.ForeignKey(Player,null=True, related_name='matches')
@@ -65,8 +70,3 @@ class Throw (models.Model):
     def __unicode__(self):
         return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)
 
-
-class WeatherConditions (models.Model):
-    date = models.TextField(default='today')
-    windSpeed = models.FloatField()
-    windDirection = models.TextField()
