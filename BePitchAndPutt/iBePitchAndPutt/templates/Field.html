@@ -4,7 +4,7 @@
 <ul>
   {%for field in fields %}
   <li>
-    {{field.field_name}}
+    <a href="{% url 'iBePitchAndPutt:Field_detail'  field.id %}"> {{field.field_name}}</a>
   </li>
   {%endfor%}
 </ul>

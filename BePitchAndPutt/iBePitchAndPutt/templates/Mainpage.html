@@ -1,0 +1,13 @@
+{% extends "basepage.html" %}
+{% block content %}
+{% if user.username %}
+<p>Welcome {{ user.username }},
+your Pitch and Putt Application is ready to work!
+Now you can register all your results!
+</p>
+{% else %}
+<p>Welcome anonymous:
+Must  <a href="/login/">sign in</a>
+to register your results.</p>
+{% endif %}
+{% endblock %}

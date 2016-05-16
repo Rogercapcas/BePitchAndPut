@@ -20,20 +20,27 @@ from iBePitchAndPutt.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^players/$',players),
-    url(r'^player/(\d+)/$',player_info),
-    url(r'^holes/$',holes),
-    url(r'^holes/(\d+)/$',hole_info),
-    url(r'^field/$',field),
-    url(r'^field/(\d+)/$',field_info),
+    url(r'^player/$',PlayerList.as_view(),name='Player_list'),
+    url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
+
+
+
+    url(r'^holes/(?P<pk>\d+)/$',HoleDetail.as_view,name="Hole_detail"),
+
+
+    url(r'^field/$',FieldList.as_view(),name="Field_list"),
+    url(r'^field/(?P<pk>\d+)/$',FieldDetail.as_view(),name="Field_detail"),
+
+    url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
+
+
     url(r'^rules/',rules),
     url(r'^actualWeather/$',actualWeather),
-    url(r'^results/(\d+)/(\d+)$',player_results),
+    url(r'^results/(?P<pk>\d+)/$',player_results),
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
 
-
-
+    
     #RESTful API
     url(r'^api/auth/',
         include('rest_framework.urls', namespace='rest_framework')),
@@ -49,23 +56,5 @@ urlpatterns = [
         APIPlayerList.as_view(), name='field-list')
     url(r'^api/field/(?P<pk>\d+)/$',
         APIFieldDetail.as_view(), name='field-detail',)
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ]
-
-

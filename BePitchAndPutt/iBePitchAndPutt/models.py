@@ -47,7 +47,7 @@ class Hole (models.Model):
 
 class Match (models.Model):
     match_number = models.IntegerField()
-    player = models.ForeignKey(Player)
+    player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
     hole = models.ForeignKey(Hole)
     hole_result = models.IntegerField()
@@ -59,8 +59,15 @@ class Match (models.Model):
     def __unicode__(self):
         return u'%s' % self.match_number
 
-class Rule (models.Model):
-    rules = models.TextField()
+class Throw (models.Model):
+    hole = models.ForeignKey(Hole)
+    match = models.ForeignKey(Match)
+    score = models.IntegerField()
+
+    def __unicode__(self):
+        return u'%s%s' % (self.hole, self.match,)
+    def get_score (h, m):
+        return ModelName.objects.filter(self.hole == h, self.match == m).score
 
 class WeatherConditions (models.Model):
     date = models.TextField(default='today')

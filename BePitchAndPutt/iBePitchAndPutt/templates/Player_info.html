@@ -1,0 +1,24 @@
+{% extends 'basepage.html' %}
+{% block content %}
+
+<h1>{{player.name}}</h1>
+  <p>
+    Player number: {{player.number_of_player}}<br>
+    Brithday: {{player.birthdate}}<br>
+    Player State: {{player.stateOrProvince}}<br>
+    City: {{player.city}}<br>
+    Street: {{player.street}}<br>
+    Zip code: {{player.zipCode}}<br>
+    Telephone: {{player.telephone}}<br>
+    Handicap: {{player.handicap}}<br>
+  </p>
+  <p>
+  <ul>
+    {% for match in player.matches.all %}
+        <li><a href="{% url 'iBePitchAndPutt:Match_detail' match.id   g%}">
+            {{ match.id }} -- {{ match.date }}</a></li>
+    {% empty %}<li>Sorry, no dishes for this restaurant yet.</li>
+    {% endfor %}
+  </ul>
+</p>
+{% endblock %}

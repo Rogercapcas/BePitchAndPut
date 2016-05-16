@@ -4,8 +4,7 @@ from django.http import HttpResponse, Http404
 from django.template import Context
 from django.template.loader import get_template
 from django.db.models import Sum
-
-
+from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -14,6 +13,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from models import Player, Field, Hole, Match,Rule
 from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, RuleSerializer, WeatherConditionsSerializer
+
 
 def mainpage(request):
     return render_to_response(
@@ -43,65 +43,49 @@ def player_results(request, player_id, match_number):
 
     })
 
-def players(request):
-    return render_to_response(
+class PlayerList (ListView):
+    model = Player
+    queryset = Player.objects.all()
+    context_object_name='player_list',
+    template_name='iBePitchAndPutt/Player.html'
 
-    'Player.html',
-    {
-        'titlehead' : "Players",
-        'pagetitle' : "Players",
-        'players': Player.objects.all(),
-    })
 
-def player_info(request,player_id):
-    return render_to_response(
+class PlayerDetail(DetailView):
+    model = Player
+    template_name = 'iBePitchAndPutt/Player_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(PlayerDetail, self).get_context_data(**kwargs)
+        return context
 
-    'player_info.html',
-    {
-        'titlehead' : "Player info",
-        'pagetitle' : "Player Information",
-        'player': Player.objects.get(pk=player_id),
-    })
 
-def holes(request):
-    return render_to_response(
+class FieldList (ListView):
+    model = Field
+    queryset = Field.objects.all()
+    context_object_name='field_list',
+    template_name='iBePitchAndPutt/Field.html'
 
-    'Hole.html',
-    {
-        'titlehead' : "Holes",
-        'pagetitle' : "Holes",
-        'holes': Hole.objects.all(),
-    })
 
-def hole_info (request, hole_number):
-    return render_to_response(
+class FieldDetail(DetailView):
+    model = Field
+    template_name = 'iBePitchAndPutt/Field_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(FieldDetail, self).get_context_data(**kwargs)
+        return context
 
-    'holes_info.html',
-    {
-        'titlehead' : "Hole info",
-        'pagetitle' : "Hole information",
-        'hole' : Hole.objects.get(pk=hole_number),
-    })
+class HoleDetail(DetailView):
+    model = Hole
+    template_name = 'iBePitchAndPutt/Hole_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(HoleDetail, self).get_context_data(**kwargs)
+        return context
 
-def field (request):
-    return render_to_response(
 
-    'Field.html',
-    {
-    'titlehead': "Fields",
-    'pagetitle': "Fields",
-    'fields': Field.objects.all(),
-    })
-
-def field_info(request, FieldCode):
-    return render_to_response(
-    'Field_info.html',
-    {
-        'titlehead':'Field info',
-        'pagetitle': 'Field information',
-        'field': Field.objects.get(pk=FieldCode),
-
-    })
+class MatchDetail(DetailView):
+    model = Match
+    template_name = 'iBePitchAndPutt/Match_info.html'   
+    def get_context_data(self, **kwargs):
+        context = super(MatchDetail, self).get_context_data(**kwargs)
+        return context
 
 def rules (request):
     return render_to_response(
@@ -119,8 +103,11 @@ def actualWeather (request):
     {
         'titlehead': 'Weather',
         'pagetitle': 'Weather conditions',
-        'weather': WeatherConditions.objects.get(pk=today),
+        'weather': weatherConditions.objects.get(pk=today),
     })
+
+
+
 
 
 #RESTful API
@@ -186,4 +173,3 @@ class APIMatchDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Match
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
-
