@@ -1,21 +1,16 @@
 {% extends 'basepage.html' %}
 {% block content %}
-<!--
+
   <p>
-    Player number: {{player.number_of_player}}<br>
-    Brithday: {{player.birthdate}}<br>
-    Player State: {{player.stateOrProvince}}<br>
-    City: {{player.city}}<br>
-    Street: {{player.street}}<br>
-    Zip code: {{player.zipCode}}<br>
-    Telephone: {{player.telephone}}<br>
-    Handicap: {{player.handicap}}<br>
+    Match number: {{match.match_number}}<br>
+    Player: {{match.player}}<br>
+    Date: {{match.date}}<br>
   </p>
   <p>
--->
+
   <ul>
     {% for throw in match.throws.all %}
-        <li><a href="{% url 'Match_detail' throw.id   %}">
+        <li><a href="{% url 'Throw_detail' throw.id   %}">
             {{ throw.id }} -- {{ throw.score }}</a></li>
     {% empty %}<li>Sorry, no throws for this match yet.</li>
     {% endfor %}

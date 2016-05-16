@@ -41,8 +41,8 @@ class Field(models.Model):
         return u'%s' % self.field_name
 
 class Hole (models.Model):
-    field = models.ForeignKey(Field)
-    hole_number = models.IntegerField(default=date.today)
+    field = models.ForeignKey(Field, null=False, related_name='holes')
+    hole_number = models.IntegerField()
     meters = models.IntegerField()
     handicap_hole = models.IntegerField()
     def __unicode__(self):
@@ -63,7 +63,7 @@ class Throw (models.Model):
     score = models.IntegerField()
 
     def __unicode__(self):
-        return u'%i%i' % (self.hole, self.match,)
+        return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)
 
 
 class WeatherConditions (models.Model):

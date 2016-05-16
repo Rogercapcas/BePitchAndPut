@@ -12,5 +12,15 @@
     FieldURL: {{field.url}}<br>
     Field_holes: {{field.number_of_holes}}<br>
     FieldPar: {{field.par}}<br>
+  </p>
+  <p>
+
+  <ul>
+    {% for hole in field.holes.all %}
+        <li><a href="{% url 'Hole_detail' hole.id   %}">
+            {{ hole.id }} -- {{ hole.hole_number }}</a></li>
+    {% empty %}<li>Sorry, no holes for this field yet.</li>
+    {% endfor %}
+  </ul>
 </p>
 {% endblock %}

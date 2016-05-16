@@ -25,23 +25,7 @@ def mainpage(request):
         'contentbody': 'Your best application to see your training results',
         'user': request.user
     })
-def pdf (request):
-    return render_to_response(
-    'pdf.html',
-    )
 
-def player_results(request, player_id, match_number):
-    return render_to_response(
-
-    'results.html',
-    {
-
-        'titlehead': "Results",
-        'pagetitle': Player.objects.get(pk=player_id),
-        'matches': Match.objects.filter(player=player_id,match_number= match_number).all(),
-        'match_result' : Match.objects.filter(player=player_id,match_number= match_number).aggregate(Sum('hole_result')),
-
-    })
 """
 class PlayerList (ListView):
     model = Player
@@ -49,6 +33,11 @@ class PlayerList (ListView):
     context_object_name='Player_list'
     template_name='Player.html'
 
+class FieldList (ListView):
+    model = Field
+    queryset = Field.objects.all()
+    context_object_name='Field_list'
+    template_name='Field.html'
 
 class PlayerDetail(DetailView):
     model = Player
@@ -65,6 +54,17 @@ class MatchDetail(DetailView):
         context = super(MatchDetail, self).get_context_data(**kwargs)
         return context
 
+"""
+class MatchCreate(CreateView):
+    model = Match
+    template_name = 'form.html'
+    form_class = MatchForm
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(MatchCreate, self).form_valid(form)
+"""
+
+
 class ThrowDetail(DetailView):
     model = Throw
     template_name = 'Throw_info.html'
@@ -72,23 +72,16 @@ class ThrowDetail(DetailView):
         context = super(ThrowDetail, self).get_context_data(**kwargs)
         return context
 
-def rules (request):
-    return render_to_response(
-
-    'rules.html',
-    {
-        'titlehead': 'Rules',
-        'pagetitle':'Rules of last version',
-        
-    })
 """
-
-class FieldList (ListView):
-    model = Field
-    queryset = Field.objects.all()
-    context_object_name='field_list'
-    template_name='Field.html'
-
+class ThrowCreate(CreateView):
+    model = Throw
+    template_name = 'form.html'
+    form_class = ThrowForm
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.match = Match.objects.get(id=self.kwargs['pk'])
+        return super(ThrowCreate, self).form_valid(form)
+"""
 
 class FieldDetail(DetailView):
     model = Field
@@ -104,10 +97,17 @@ class HoleDetail(DetailView):
         context = super(HoleDetail, self).get_context_data(**kwargs)
         return context
 
+def rules (request):
+    return render_to_response(
 
+    'rules.html',
+    {
+        'titlehead': 'Rules',
+        'pagetitle':'Rules of last version',
+        
+    })
 
-
-
+"""
 def actualWeather (request):
     return render_to_response(
 
