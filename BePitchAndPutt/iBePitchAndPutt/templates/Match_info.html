@@ -6,14 +6,25 @@
     Player: {{match.player}}<br>
     Date: {{match.date}}<br>
   </p>
-  <p>
+  <table border=1 cellpadding=10>
 
-  <ul>
-    {% for throw in match.throws.all %}
-        <li><a href="{% url 'Throw_detail' throw.id   %}">
-            {{ throw.id }} -- {{ throw.score }}</a></li>
-    {% empty %}<li>Sorry, no throws for this match yet.</li>
-    {% endfor %}
-  </ul>
-</p>
+
+    <th>Forat</th>
+    {%for throw in match.throws.all %}
+      <th>{{throw.hole.hole_number}}</th>
+    {%endfor%}
+
+  <tr>
+    <td><strong>Puntuació</strong></td>
+      {% for throw in match.throws.all %}
+        <td>{{throw.score}}</td>
+      {%endfor%}
+  </tr>
+
+  </table>
+
 {% endblock %}
+
+
+
+

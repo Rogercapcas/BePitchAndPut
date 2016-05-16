@@ -9,8 +9,8 @@ import json
 # Create your models here.
 
 class Player (models.Model):
-    name = models.CharField(max_length=100)
-    number_of_player = models.IntegerField()
+    name = models.CharField(max_length=100, blank=False)
+    number_of_player = models.AutoField(primary_key=True, unique=True)
     birthdate = models.DateField()
     stateOrProvince = models.TextField(blank=True, null=True)
     city = models.TextField(max_length=100)
@@ -49,7 +49,7 @@ class Hole (models.Model):
         return u'%i' % self.hole_number
 
 class Match (models.Model):
-    match_number = models.IntegerField()
+    match_number = models.AutoField(primary_key=True, unique=True)
     player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
     weather = models.ForeignKey
