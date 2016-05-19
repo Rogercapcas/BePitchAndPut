@@ -4,7 +4,7 @@ from models import Player, Match, Throw
 class PlayerForm(ModelForm):
 	class Meta:
 		model Player
-		exclude = ('')
+		exclude = ('number_of_player',)
 
 class MatchForm(ModelForm):
     class Meta:
