@@ -19,6 +19,8 @@ from django.contrib.auth.models import User
 from iBePitchAndPutt.views import *
 
 urlpatterns = [
+    url(r'^$', mainpage, name='home'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
@@ -31,25 +33,8 @@ urlpatterns = [
 ]
 
 '''  
-
-    
-
-
-
-    url(r'^holes/(?P<pk>\d+)/$',HoleDetail.as_view,name="Hole_detail"),
-
-
-    url(r'^field/$',FieldList.as_view(),name="Field_list"),
-    url(r'^field/(?P<pk>\d+)/$',FieldDetail.as_view(),name="Field_detail"),
-
-    url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
-
-
     
     url(r'^actualWeather/$',actualWeather),
-    url(r'^results/(?P<pk>\d+)/$',player_results),
-    url(r'^$', mainpage, name='home'),
-    url(r'^login/$', 'django.contrib.auth.views.login'),
 
     
     #RESTful API
