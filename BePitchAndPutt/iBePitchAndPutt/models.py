@@ -16,8 +16,8 @@ class Player (models.Model):
     city = models.TextField(max_length=100)
     street = models.TextField(blank=True, null=True)
     zipCode = models.TextField(blank=True, null=True)
-    telephone = models.IntegerField()
-    handicap = models.FloatField()
+    telephone = models.IntegerField(null = False, blank = False)
+    handicap = models.FloatField(null = True, blank = True)
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -26,25 +26,25 @@ class Player (models.Model):
 
 
 class Field(models.Model):
-    FieldCode = models.IntegerField()
-    field_name = models.CharField(max_length=100)
+    FieldCode = models.IntegerField(null = False, blank = False)
+    field_name = models.CharField(blank = False, null = False, max_length=100)
     stateOrProvince = models.TextField(blank=True, null=True)
-    city = models.TextField(max_length=100)
+    city = models.TextField(null = False, blank = False, max_length=100)
     street = models.TextField(blank=True, null=True)
     zipCode = models.TextField(blank=True, null=True)
-    telephone = models.IntegerField()
+    telephone = models.IntegerField(null = True, blank = True)
     url = models.URLField(blank=True, null=True)
     number_of_holes = models.IntegerField()
-    par = models.IntegerField()
+    par = models.IntegerField(null = False, blank = False)
 
     def __unicode__(self):
         return u'%s' % self.field_name
 
 class Hole (models.Model):
     field = models.ForeignKey(Field, null=False, related_name='holes')
-    hole_number = models.IntegerField()
-    meters = models.IntegerField()
-    handicap_hole = models.IntegerField()
+    hole_number = models.IntegerField(null = False, blank = False)
+    meters = models.IntegerField(null = False, blank = False)
+    handicap_hole = models.IntegerField(null = False, blank = False)
     def __unicode__(self):
         return u'%i' % self.hole_number
 
@@ -52,7 +52,7 @@ class Match (models.Model):
     match_number = models.AutoField(primary_key=True, unique=True)
     player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
-    weather = models.ForeignKey
+    weather = models.ForeignKey(WeatherConditions, null = True, blank = True)
 
     def __unicode__(self):
         return u'%i' % self.match_number
@@ -60,7 +60,7 @@ class Match (models.Model):
 class Throw (models.Model):
     hole = models.ForeignKey(Hole,null=True, related_name='throws')
     match = models.ForeignKey(Match,null=True, related_name='throws')
-    score = models.IntegerField()
+    score = models.IntegerField( null = False, blank = False)
 
     def __unicode__(self):
         return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)

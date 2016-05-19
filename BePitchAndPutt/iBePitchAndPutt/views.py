@@ -47,6 +47,17 @@ class PlayerDetail(DetailView):
         context = super(PlayerDetail, self).get_context_data(**kwargs)
         return context
 
+"""
+class PlayerCreate(CreateView):
+    model = Player
+    template_name = 'form.html'
+    form_class = PlayerForm
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PlayerCreate, self).form_valid(form)
+"""
+
+
 class MatchDetail(DetailView):
     model = Match
     template_name = 'Match_info.html'   

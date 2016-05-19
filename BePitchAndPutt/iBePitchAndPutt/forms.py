@@ -1,5 +1,10 @@
 from django.forms import ModelForm
-from models import Match, Throw
+from models import Player, Match, Throw
+
+class PlayerForm(ModelForm):
+	class Meta:
+		model Player
+		exclude = ('')
 
 class MatchForm(ModelForm):
     class Meta:
