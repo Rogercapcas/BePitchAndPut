@@ -13,7 +13,6 @@ from django.utils import timezone
 
 from models import Player, Field, Hole, Match, Throw 
 from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer
-"""
 
 def mainpage(request):
     return render_to_response(
@@ -26,7 +25,6 @@ def mainpage(request):
         'user': request.user
     })
 
-"""
 class PlayerList (ListView):
     model = Player
     queryset = Player.objects.all()
