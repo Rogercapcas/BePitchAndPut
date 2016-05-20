@@ -4,14 +4,14 @@ from models import Player, Match, Throw
 class PlayerForm(ModelForm):
 	class Meta:
 		model = Player
-		exclude = ('number_of_player',)
+		exclude = ('number_of_player','user')
 
 class MatchForm(ModelForm):
     class Meta:
         model = Match
-        exclude = ('match_number',)
+        exclude = ('user','weather')
 
 class ThrowForm(ModelForm):
 	class Meta:
 		model = Throw
-		exclude = ('match',)
+		exclude = ('match','user')

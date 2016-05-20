@@ -6,6 +6,12 @@
     Player: {{match.player}}<br>
     Date: {{match.date}}<br>
   </p>
+
+  <p>
+  Throws
+  {% if user.is_authenticated %}(<a href="{%url 'throw_create' %}" > Create new throw </a>){% endif %}
+  </p>
+
   <table border=1 cellpadding=10>
 
 

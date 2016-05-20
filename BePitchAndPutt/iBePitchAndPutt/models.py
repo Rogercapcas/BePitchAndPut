@@ -24,7 +24,7 @@ class Player (models.Model):
     def __unicode__(self):
         return u'%s' % self.name
     def get_absolute_url(self):
-        return reverse('PlayerDetail',kwargs={'pk':self.pk})
+        return reverse('Player_detail',kwargs={'pk':self.pk})
 
 
 class Field(models.Model):
@@ -42,6 +42,7 @@ class Field(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.field_name
+
 
 class Hole (models.Model):
     field = models.ForeignKey(Field, null=False, related_name='holes')
@@ -67,6 +68,8 @@ class Match (models.Model):
 
     def __unicode__(self):
         return u'%i' % self.match_number
+    def get_absolute_url(self):
+        return reverse('Match_detail',kwargs={'pk':self.pk})
 
 class Throw (models.Model):
     hole = models.ForeignKey(Hole,null=True, related_name='throws')
@@ -76,4 +79,6 @@ class Throw (models.Model):
 
     def __unicode__(self):
         return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)
+    def get_absolute_url(self):
+        return reverse('Throw_detail',kwargs={'pk':self.pk})
 

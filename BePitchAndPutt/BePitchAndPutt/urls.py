@@ -39,8 +39,10 @@ urlpatterns = [
     url(r'^rules/',rules, name='rules'),
     
     url(r'^match/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',MatchDetail.as_view(),name="Match_detail"),
+    url(r'^match/create/$',MatchCreate.as_view(),name='match_create'),
     
     url(r'throw/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$', ThrowDetail.as_view(), name="Throw_detail"),
+    url(r'^throw/create/$',ThrowCreate.as_view(),name='throw_create'),
     
     url(r'^field(\.(?P<extension>(json|xml)))?$',FieldList.as_view(),name="Field_list"),
     url(r'^field/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',FieldDetail.as_view(),name="Field_detail"),

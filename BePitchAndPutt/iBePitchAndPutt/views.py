@@ -115,15 +115,14 @@ class MatchDetail(DetailView):
         context = super(MatchDetail, self).get_context_data(**kwargs)
         return context
 
-"""
-class MatchCreate(CreateView):
+
+class MatchCreate(LoginRequiredMixin,CreateView):
     model = Match
     template_name = 'form.html'
     form_class = MatchForm
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(MatchCreate, self).form_valid(form)
-"""
 
 
 class ThrowDetail(DetailView):
@@ -133,8 +132,7 @@ class ThrowDetail(DetailView):
         context = super(ThrowDetail, self).get_context_data(**kwargs)
         return context
 
-"""
-class ThrowCreate(CreateView):
+class ThrowCreate(LoginRequiredMixin,CreateView):
     model = Throw
     template_name = 'form.html'
     form_class = ThrowForm
@@ -142,7 +140,6 @@ class ThrowCreate(CreateView):
         form.instance.user = self.request.user
         form.instance.match = Match.objects.get(id=self.kwargs['pk'])
         return super(ThrowCreate, self).form_valid(form)
-"""
 
 class FieldDetail(DetailView):
     model = Field
@@ -167,21 +164,6 @@ def rules (request):
         'pagetitle':'Rules of last version',
         
     })
-
-"""
-def actualWeather (request):
-    return render_to_response(
-
-    'weatherConditions.html',
-    {
-        'titlehead': 'Weather',
-        'pagetitle': 'Weather conditions',
-        'weather': weatherConditions.objects.get(pk=today),
-    })
-
-"""
-
-
 
 #RESTful API
 
