@@ -6,24 +6,29 @@
     Player: {{match.player}}<br>
     Date: {{match.date}}<br>
   </p>
-
   <p>
   Throws
-  {% if user.is_authenticated %}(<a href="{%url 'throw_create' %}" > Create new throw </a>){% endif %}
+  {% if user.is_authenticated %}(<a href="{%url 'throw_create' match.player.number_of_player match.match_number%}" > Create new throw </a>){% endif %}
   </p>
 
+  <p>
+    {% if user == match.user %}
+        (<a href="{% url 'match_edit' match.player.number_of_player match.match_number %}">Edit match</a>)
+    {% endif %}
+  </p>
+ 
   <table border=1 cellpadding=10>
 
 
     <th>Forat</th>
     {%for throw in match.throws.all %}
-      <th>{{throw.hole.hole_number}}</th>
+      <th><a href="{%url 'throw_edit' match.player.number_of_player match.match_number  throw.id %}" >{{throw.hole.hole_number}}</a></th>
     {%endfor%}
 
   <tr>
     <td><strong>Puntuació</strong></td>
       {% for throw in match.throws.all %}
-        <td>{{throw.score}}</td>
+        <td>{{throw.score}} </td>
       {%endfor%}
   </tr>
 

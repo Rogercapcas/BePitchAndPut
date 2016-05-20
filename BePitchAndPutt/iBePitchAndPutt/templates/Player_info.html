@@ -16,14 +16,15 @@
   <p>
   <ul>
     {% for match in player.matches.all %}
-        <li><a href="{% url 'Match_detail' match.id   %}">
-            {{ match.id }} -- {{ match.date }}</a></li>
+
+        <li><a href="{% url 'Match_detail' player.number_of_player match.match_number %}">
+            {{ match.pk }} -- {{ match.date }}</a></li>
     {% empty %}<li>Sorry, no matches for this player yet.</li>
     {% endfor %}
   </ul>
   </p>
   <p>
   Matches
-  {% if user.is_authenticated %}(<a href="{%url 'match_create' %}" > Create new match </a>){% endif %}
+  {% if user.is_authenticated %}(<a href="{%url 'match_create' player.number_of_player%}" > Create new match </a>){% endif %}
   </p>
 {% endblock %}

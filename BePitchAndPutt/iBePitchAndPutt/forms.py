@@ -9,9 +9,9 @@ class PlayerForm(ModelForm):
 class MatchForm(ModelForm):
     class Meta:
         model = Match
-        exclude = ('user','weather')
+        exclude = ('match_number','user')
 
 class ThrowForm(ModelForm):
 	class Meta:
 		model = Throw
-		exclude = ('match','user')
+		exclude = ('code','match','user')

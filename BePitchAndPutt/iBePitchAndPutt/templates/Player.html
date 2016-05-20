@@ -9,7 +9,6 @@
 <p>
 <ul>
   {%for player in Player_list %}
-  <li>
   	<li><a href="{% url 'Player_detail'  player.number_of_player %}"> 
     {{player.name}}</a>
   </li>

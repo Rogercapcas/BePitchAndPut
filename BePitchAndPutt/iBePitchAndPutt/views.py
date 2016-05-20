@@ -65,6 +65,8 @@ class CheckIsOwnerMixin(object):
             raise PermissionDenied
         return obj
 
+class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    template_name = 'form.html'
 
 def mainpage(request):
     return render_to_response(
@@ -106,8 +108,6 @@ class PlayerCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(PlayerCreate, self).form_valid(form)
 
-
-
 class MatchDetail(DetailView):
     model = Match
     template_name = 'Match_info.html'   
@@ -122,6 +122,7 @@ class MatchCreate(LoginRequiredMixin,CreateView):
     form_class = MatchForm
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.player = get_object_or_404(Player, pk=self.kwargs['pk'])
         return super(MatchCreate, self).form_valid(form)
 
 
@@ -138,7 +139,7 @@ class ThrowCreate(LoginRequiredMixin,CreateView):
     form_class = ThrowForm
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.match = Match.objects.get(id=self.kwargs['pk'])
+        form.instance.match = get_object_or_404(Match, pk=self.kwargs['pk'])
         return super(ThrowCreate, self).form_valid(form)
 
 class FieldDetail(DetailView):

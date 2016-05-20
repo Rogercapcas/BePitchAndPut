@@ -63,22 +63,23 @@ class Match (models.Model):
     match_number = models.AutoField(primary_key=True, unique=True)
     player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
-    weather = models.ForeignKey(WeatherConditions, null = True, blank = True)
+    #weather = models.ForeignKey(WeatherConditions, null = True, blank = True)
     user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u'%i' % self.match_number
     def get_absolute_url(self):
-        return reverse('Match_detail',kwargs={'pk':self.pk})
+        return reverse('Match_detail',kwargs={'pk':self.pk,'pkr':self.player.number_of_player})
 
 class Throw (models.Model):
+    #code = models.AutoField(primary_key=True, unique=True)
     hole = models.ForeignKey(Hole,null=True, related_name='throws')
     match = models.ForeignKey(Match,null=True, related_name='throws')
     score = models.IntegerField( null = False, blank = False)
     user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
-        return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)
+        return u'Hole: %s, Match: %s' % (self.hole.id, self.match.match_number)
     def get_absolute_url(self):
-        return reverse('Throw_detail',kwargs={'pk':self.pk})
+        return reverse('Match_detail',kwargs={'pkr':self.match.player.number_of_player,'pk':self.match.match_number})
 

@@ -3,9 +3,9 @@
 {% block content %}
     <script>
         $(function() {
-            $.getJSON("{% static "countries.json" %}", {}, function (countries) {
-                $("#id_country").autocomplete({
-                    source: countries
+            $.getJSON("{% static "handicap.json" %}", {}, function (handicap) {
+                $("#id_handicap").autocomplete({
+                    source: handicap
                 });
             });
             $("#id_city").autocomplete({
@@ -17,7 +17,7 @@
                             featureClass: "P",
                             maxRows: 10,
                             name_startsWith: request.term,
-                            username: "daniroger"
+                            username: "demo"
                         },
                         success: function( data ) {
                             response( $.map( data.geonames, function( item ) {

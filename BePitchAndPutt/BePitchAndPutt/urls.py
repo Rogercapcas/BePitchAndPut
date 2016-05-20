@@ -28,9 +28,7 @@ urlpatterns = [
     url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^accounts/login/$', login, name='login'),
-
-    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$', logout, name='logout'),
     
     url(r'^player(\.(?P<extension>(json|xml)))?$$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',PlayerDetail.as_view(),name='Player_detail'),
@@ -38,11 +36,23 @@ urlpatterns = [
     
     url(r'^rules/',rules, name='rules'),
     
-    url(r'^match/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',MatchDetail.as_view(),name="Match_detail"),
-    url(r'^match/create/$',MatchCreate.as_view(),name='match_create'),
+    url(r'^player/(?P<pkr>\d+)/match/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',MatchDetail.as_view(),name="Match_detail"),
+    url(r'^player/(?P<pk>\d+)/match/create/$',MatchCreate.as_view(),name='match_create'),
+    url(r'^player/(?P<pkr>\d+)/match/(?P<pk>\d+)/edit/$',LoginRequiredCheckIsOwnerUpdateView.as_view(
+        model = Match,
+        form_class = MatchForm),
+        name='match_edit'
+        ),
     
-    url(r'throw/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$', ThrowDetail.as_view(), name="Throw_detail"),
-    url(r'^throw/create/$',ThrowCreate.as_view(),name='throw_create'),
+    url(r'player/(?P<pkrr>\d+)/match/(?P<pkr>\d+)/throw/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$', ThrowDetail.as_view(), name="Throw_detail"),
+
+    url(r'^player/(?P<pkrr>\d+)/match/(?P<pkr>\d+)/throw/(?P<pk>\d+)/edit/$',LoginRequiredCheckIsOwnerUpdateView.as_view(
+        model = Throw,
+        form_class = ThrowForm),
+        name='throw_edit'
+        ),
+
+    url(r'^player/(?P<pkr>\d+)/match/(?P<pk>\d+)/throw/create/$',ThrowCreate.as_view(),name='throw_create'),
     
     url(r'^field(\.(?P<extension>(json|xml)))?$',FieldList.as_view(),name="Field_list"),
     url(r'^field/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',FieldDetail.as_view(),name="Field_detail"),
