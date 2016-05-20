@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/login/$', login, name='login'),
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
     url(r'^rules/',rules),
