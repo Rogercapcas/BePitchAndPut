@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
     
-    url(r'^rules/',rules),
+    url(r'^rules/',rules, name='rules'),
     
     url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
     
