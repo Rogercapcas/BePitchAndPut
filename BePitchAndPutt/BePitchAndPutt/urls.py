@@ -17,16 +17,25 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
 from iBePitchAndPutt.views import *
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
+<<<<<<< HEAD
     url(r'^accounts/login/$', login, name='login'),
+=======
+
+    url(r'^accounts/login/$', login, name='login'),
+    
+
+>>>>>>> 92cc6564c88327bb967b75e873f2618b90dcfc20
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
     
-    url(r'^rules/',rules),
+    url(r'^rules/',rules, name='rules'),
     
     url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
     
@@ -40,6 +49,7 @@ urlpatterns = [
 
 """
     #RESTful API
+    
     url(r'^api/auth/',
         include('rest_framework.urls', namespace='rest_framework')),
     
@@ -66,7 +76,8 @@ urlpatterns = [
 ]
 
 
-    
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['api','json', 'xml'])
+ 
    
 
     

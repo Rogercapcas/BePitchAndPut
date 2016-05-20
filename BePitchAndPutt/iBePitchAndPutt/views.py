@@ -8,8 +8,8 @@ from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-#from rest_framework import generics, permissions
-#from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework import generics, permissions
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from models import Player, Field, Hole, Match, Throw 
 from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer, ThrowSerializer
