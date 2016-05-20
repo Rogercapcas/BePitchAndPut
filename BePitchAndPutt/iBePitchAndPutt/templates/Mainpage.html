@@ -4,6 +4,9 @@
 <p>Welcome {{ user.username }},
 your Pitch and Putt Application is ready to work!
 Now you can register all your results!
+  <li>
+    <a href="{% url 'Player_list' %}"> {{Players}}</a>
+  </li>
 </p>
 {% else %}
 <p>Welcome anonymous:
