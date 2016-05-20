@@ -7,16 +7,18 @@ from models import Player, Field, Hole, Match, WeatherConditions, Throw
 class PlayerSerializer(HyperlinkedModelSerializer):
 
 	user = CharField(read_only=True)
+	url = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: player-detail')
 	class Meta:
 		model = Player
-		fields = ('user','name','number_of_player','birthday','stateOrProvince','city','street','zipCode','telephone','handicap')
+		fields = ('url','user','name','number_of_player','birthday','stateOrProvince','city','street','zipCode','telephone','handicap')
 
 class FieldSerializer(HyperlinkedModelSerializer):
 
+	uri = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: field-detail')
 	user = CharField(read_only=True)
 	class Meta:
 		model = Field
-		fields = ('user','FieldCode','field_name','stateOrProvince','city','street','zipCode','telephone','url','number_of_holes','par')
+		fields = ('uri','user','FieldCode','field_name','stateOrProvince','city','street','zipCode','telephone','url','number_of_holes','par')
 
 class HoleSerializer(HyperlinkedModelSerializer):
 
@@ -38,8 +40,7 @@ class ThrowSerializer(HyperlinkedModelSerializer):
 	class Meta:
 		model = Throw
 		fields = ('hole', 'match', 'score')
-		
-		
+				
 
 class WeatherConditionsSerializer(HyperlinkedModelSerializer):
 

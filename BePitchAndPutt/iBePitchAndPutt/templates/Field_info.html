@@ -22,5 +22,28 @@
     {% empty %}<li>Sorry, no holes for this field yet.</li>
     {% endfor %}
   </ul>
+
+<!--
+  <table border=1 cellpadding=10>
+
+
+    <th>Forat</th>
+    {%for throw in match.throws.all %}
+      <th>{{throw.hole.hole_number}}</th>
+    {%endfor%}
+
+  <tr>
+    <td><strong>Puntuació</strong></td>
+      {% for throw in match.throws.all %}
+        <td>{{throw.score}}</td>
+      {%endfor%}
+  </tr>
+
+  </table>
+
+-->
+
 </p>
 {% endblock %}
+
+
