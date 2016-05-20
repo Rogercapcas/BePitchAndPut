@@ -12,7 +12,7 @@ from django.utils import timezone
 #from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from models import Player, Field, Hole, Match, Throw 
-from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer
+from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer, ThrowSerializer
 
 def mainpage(request):
     return render_to_response(

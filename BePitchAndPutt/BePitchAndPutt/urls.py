@@ -15,12 +15,12 @@ Including another URLconf
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.contrib.auth.models import User
-
+from django.contrib.auth.views import login, logout
 from iBePitchAndPutt.views import *
 
 urlpatterns = [
     url(r'^$', mainpage, name='home'),
-    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
