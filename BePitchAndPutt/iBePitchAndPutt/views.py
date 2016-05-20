@@ -127,7 +127,7 @@ def actualWeather (request):
         'weather': weatherConditions.objects.get(pk=today),
     })
 
-
+"""
 
 
 
@@ -169,29 +169,15 @@ class APIFieldDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Field.objects.all()
     serializer_class = FieldSerializer
 
-class APIHoleList(generics.ListCreateAPIView)
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    model = Hole
-    queryset = Hole.objects.all()
-    serializer_class = HoleSerializer
-
-class APIHoleDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
-    model = Hole
-    queryset = Hole.objects.all()
-    serializer_class = HoleSerializer
-
-
-
-class APIMatchList(generics.ListCreateAPIView)
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    model = Match
-    queryset = Match.objects.all()
-    serializer_class = MatchSerializer
 
 class APIMatchDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
     model = Match
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
-"""
+
+class APIThrowDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Throw
+    queryset = Throw.objects.all()
+    serializer_class = ThrowSerializer

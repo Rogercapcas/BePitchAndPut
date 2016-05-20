@@ -16,11 +16,31 @@
   <p>
 
   <ul>
-    {% for hole in field.holes.all %}
-        <li><a href="{% url 'Hole_detail' hole.id   %}">
-            {{ hole.id }} -- {{ hole.hole_number }}</a></li>
-    {% empty %}<li>Sorry, no holes for this field yet.</li>
-    {% endfor %}
+  <table border=1 cellpadding=10>
+
+
+    <th>Forat</th>
+    {%for hole in field.holes.all %}
+      <th>{{hole.hole_number}}</th>
+    {%endfor%}
+
+  <tr>
+    <td><strong>Metres</strong></td>
+      {% for hole in field.holes.all %}
+        <td>{{hole.meters}}</td>
+      {%endfor%}
+  </tr>
+
+  <tr>
+    <td><strong>Handicap</strong></td>
+      {% for hole in field.holes.all %}
+        <td>{{{hole.handicap_hole}}</td>
+      {%endfor%}
+  </tr>
+
+  </table>
   </ul>
 </p>
 {% endblock %}
+
+

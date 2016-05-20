@@ -22,33 +22,56 @@ urlpatterns = [
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
+<<<<<<< HEAD
+=======
+    url(r'^accounts/login/$', login, name='login'),
+    
+>>>>>>> a59e49f712efa02c45204edd2cf48acdbb95d388
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
+    
     url(r'^rules/',rules),
+    
     url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
+    
     url(r'throw/(?P<pk>\d+)/$', ThrowDetail.as_view(), name="Throw_detail"),
+    
     url(r'^field/$',FieldList.as_view(),name="Field_list"),
     url(r'^field/(?P<pk>\d+)/$',FieldDetail.as_view(),name="Field_detail"),
 
-]
+"""
+    url(r'^actualWeather/$',ActualWeather.as_view, name='Actual_weather'),
 
-'''  
-    
-    url(r'^actualWeather/$',actualWeather),
-
-    
+"""
     #RESTful API
     url(r'^api/auth/',
         include('rest_framework.urls', namespace='rest_framework')),
+    
     url(r'^api/player/$',
-        APIPlayerList.as_view(), name='player-list')
+        APIPlayerList.as_view(), name='player-list'),
     url(r'^api/player/(?P<pk>\d+)/$',
-        APIPlayerDetail.as_view(), name='player-detail',)
-    url(r'^api/hole/$',
-        APIHoleList.as_view(), name='hole-list')
-    url(r'^api/hole/(?P<pk>\d+)/$',
-        APIHoleDetail.as_view(), name='hole-detail',)
+        APIPlayerDetail.as_view(), name='player-detail'),
+
     url(r'^api/field/$',
-        APIPlayerList.as_view(), name='field-list')
+        APIPlayerList.as_view(), name='field-list'),
     url(r'^api/field/(?P<pk>\d+)/$',
-        APIFieldDetail.as_view(), name='field-detail',)'''
+        APIFieldDetail.as_view(), name='field-detail'),
+
+    url(r'^api/match/(?P<pk>\d+)/$',
+        APIMatchDetail.as_view(), name='match-detail'),
+
+    url(r'^api/throw/(?P<pk>\d+)/$',
+        APIPThrowDetail.as_view(), name='throw-detail'),
+
+    """
+    url(r'^api/actualWeather/$',
+        APIActualWeather.as_view(), name='actual_weather'),
+    """
+]
+
+
+    
+   
+
+    
+    
