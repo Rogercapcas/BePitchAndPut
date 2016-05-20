@@ -12,12 +12,12 @@ from rest_framework import generics, permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from models import Player, Field, Hole, Match, Throw 
-from serializers import PlayerSerializer, FieldSerializer, HoleSerializer, MatchSerializer, WeatherConditionsSerializer, ThrowSerializer
+from serializers import PlayerSerializer, FieldSerializer, MatchSerializer, ThrowSerializer
 
 def mainpage(request):
     return render_to_response(
 
-    'mainpage.html',
+    'Mainpage.html',
     {
         'titlehead': 'BePitchAndPutt app',
         'pagetitle': 'Welcome to BePitchAndPutt app',
@@ -109,7 +109,7 @@ class HoleDetail(DetailView):
 def rules (request):
     return render_to_response(
 
-    'rules.html',
+    'Rules.html',
     {
         'titlehead': 'Rules',
         'pagetitle':'Rules of last version',

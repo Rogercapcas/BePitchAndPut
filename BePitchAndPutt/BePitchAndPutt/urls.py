@@ -16,7 +16,10 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
+from django.contrib.auth.decorators import login_required
 from iBePitchAndPutt.views import *
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.base import RedirectView
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
@@ -24,14 +27,11 @@ urlpatterns = [
     url(r'^$', mainpage, name='home'),
     url(r'^login/$', login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
+
     url(r'^accounts/login/$', login, name='login'),
-=======
 
     url(r'^accounts/login/$', login, name='login'),
     
-
->>>>>>> 92cc6564c88327bb967b75e873f2618b90dcfc20
     url(r'^player/$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
     
@@ -44,14 +44,10 @@ urlpatterns = [
     url(r'^field/$',FieldList.as_view(),name="Field_list"),
     url(r'^field/(?P<pk>\d+)/$',FieldDetail.as_view(),name="Field_detail"),
 
-"""
-    url(r'^actualWeather/$',ActualWeather.as_view, name='Actual_weather'),
 
-"""
     #RESTful API
     
-    url(r'^api/auth/',
-        include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/auth/',include('rest_framework.urls', namespace='rest_framework')),
     
     url(r'^api/player/$',
         APIPlayerList.as_view(), name='player-list'),
@@ -67,12 +63,12 @@ urlpatterns = [
         APIMatchDetail.as_view(), name='match-detail'),
 
     url(r'^api/throw/(?P<pk>\d+)/$',
-        APIPThrowDetail.as_view(), name='throw-detail'),
+        APIThrowDetail.as_view(), name='throw-detail'),
 
-    """
-    url(r'^api/actualWeather/$',
-        APIActualWeather.as_view(), name='actual_weather'),
-    """
+    
+   # url(r'^api/actualWeather/$',
+    #    APIActualWeather.as_view(), name='actual_weather'),
+    
 ]
 
 

@@ -8,7 +8,7 @@ class PlayerSerializer(HyperlinkedModelSerializer):
 
 	
 	url = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: player-detail')
-	matches = 
+	matches = HyperlinkedRelatedField(many=True, read_only=True, view_name='iBePitchAndPutt:match-detail')
 	class Meta:
 		model = Player
 		fields = ('url','name','number_of_player','birthday','stateOrProvince','city','street','zipCode','telephone','handicap')
@@ -16,24 +16,20 @@ class PlayerSerializer(HyperlinkedModelSerializer):
 class FieldSerializer(HyperlinkedModelSerializer):
 
 	uri = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: field-detail')
-	holes = 
+	holes = HyperlinkedRelatedField(many=True, read_only=True, view_name='JiBePitchAndPutt:hole-detail')
 	
 	class Meta:
 		model = Field
 		fields = ('uri','FieldCode','field_name','stateOrProvince','city','street','zipCode','telephone','url','number_of_holes','par')
 
 
-class HoleSerializer(HyperlinkedModelSerializer):
-
-
-
-
 class MatchSerializer(HyperlinkedModelSerializer):
 
 	
 	url = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: match-detail')
-	player = 
-	weather = 
+	player = HyperlinkedRelatedField(many=True, read_only=True, view_name='iBePitchAndPuttplayer-detail')
+	
+	#weather = HyperlinkedRelatedField(many=True, read_only=True, view_name='iBePitchAndPutt:grade-detail')
 
 	class Meta:
 		model = Match
@@ -47,11 +43,12 @@ class ThrowSerializer(HyperlinkedModelSerializer):
 		model = Throw
 		fields = ('url','hole', 'match', 'score')
 				
-
+"""
 class WeatherConditionsSerializer(HyperlinkedModelSerializer):
 
 	url = HyperlinkedIdentityField(view_name = 'iBePitchAndPutt: weatherConditions')
-	matches = 
+	matches = HyperlinkedRelatedField(many=True, read_only=True, view_name='iBePitchAndPutt:match-detail')
 	class Meta:
 		model = WeatherConditions
 		fields = ('url','date','windSpeed','windDirection')
+	"""	
