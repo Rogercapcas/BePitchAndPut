@@ -26,6 +26,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from models import Player, Field, Hole, Match, Throw 
 from serializers import PlayerSerializer, FieldSerializer, MatchSerializer, ThrowSerializer
+from forms import *
+
 
 
 
@@ -95,15 +97,15 @@ class PlayerDetail(DetailView):
         context = super(PlayerDetail, self).get_context_data(**kwargs)
         return context
 
-"""
-class PlayerCreate(CreateView):
+
+class PlayerCreate(LoginRequiredMixin, CreateView):
     model = Player
     template_name = 'form.html'
     form_class = PlayerForm
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PlayerCreate, self).form_valid(form)
-"""
+
 
 
 class MatchDetail(DetailView):

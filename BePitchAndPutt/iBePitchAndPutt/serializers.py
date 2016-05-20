@@ -13,7 +13,7 @@ class PlayerSerializer(HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Player
-		fields = ('url','user','matches','name','number_of_player','birthdate','stateOrProvince','city','street','zipCode','telephone','handicap')
+		fields = ('url','user','country','matches','name','number_of_player','birthdate','stateOrProvince','city','street','zipCode','telephone','handicap')
 
 class FieldSerializer(HyperlinkedModelSerializer):
 

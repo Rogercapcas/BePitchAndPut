@@ -3,7 +3,7 @@ from models import Player, Match, Throw
 
 class PlayerForm(ModelForm):
 	class Meta:
-		model Player
+		model = Player
 		exclude = ('number_of_player',)
 
 class MatchForm(ModelForm):

@@ -34,6 +34,7 @@ urlpatterns = [
     
     url(r'^player(\.(?P<extension>(json|xml)))?$$',PlayerList.as_view(),name='Player_list'),
     url(r'^player/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',PlayerDetail.as_view(),name='Player_detail'),
+    url(r'^player/create/$',PlayerCreate.as_view(),name='player_create'),
     
     url(r'^rules/',rules, name='rules'),
     
