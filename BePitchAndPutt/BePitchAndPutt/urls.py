@@ -32,17 +32,17 @@ urlpatterns = [
 
     url(r'^accounts/login/$', login, name='login'),
     
-    url(r'^player/$',PlayerList.as_view(),name='Player_list'),
-    url(r'^player/(?P<pk>\d+)/$',PlayerDetail.as_view(),name='Player_detail'),
+    url(r'^player(\.(?P<extension>(json|xml)))?$$',PlayerList.as_view(),name='Player_list'),
+    url(r'^player/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',PlayerDetail.as_view(),name='Player_detail'),
     
     url(r'^rules/',rules, name='rules'),
     
-    url(r'^match/(?P<pk>\d+)/$',MatchDetail.as_view(),name="Match_detail"),
+    url(r'^match/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',MatchDetail.as_view(),name="Match_detail"),
     
-    url(r'throw/(?P<pk>\d+)/$', ThrowDetail.as_view(), name="Throw_detail"),
+    url(r'throw/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$', ThrowDetail.as_view(), name="Throw_detail"),
     
-    url(r'^field/$',FieldList.as_view(),name="Field_list"),
-    url(r'^field/(?P<pk>\d+)/$',FieldDetail.as_view(),name="Field_detail"),
+    url(r'^field(\.(?P<extension>(json|xml)))?$',FieldList.as_view(),name="Field_list"),
+    url(r'^field/(?P<pk>\d+)(\.(?P<extension>(json|xml)))?$',FieldDetail.as_view(),name="Field_detail"),
 
 
     #RESTful API

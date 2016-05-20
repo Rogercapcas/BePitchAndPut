@@ -18,6 +18,7 @@ class Player (models.Model):
     zipCode = models.TextField(blank=True, null=True)
     telephone = models.IntegerField(null = False, blank = False)
     handicap = models.FloatField(null = True, blank = True)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -36,6 +37,7 @@ class Field(models.Model):
     url = models.URLField(blank=True, null=True)
     number_of_holes = models.IntegerField()
     par = models.IntegerField(null = False, blank = False)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u'%s' % self.field_name
@@ -45,6 +47,7 @@ class Hole (models.Model):
     hole_number = models.IntegerField(null = False, blank = False)
     meters = models.IntegerField(null = False, blank = False)
     handicap_hole = models.IntegerField(null = False, blank = False)
+    user = models.ForeignKey(User, default=1)
     def __unicode__(self):
         return u'%i' % self.hole_number
 
@@ -52,12 +55,14 @@ class WeatherConditions (models.Model):
     date = models.TextField(default='today')
     windSpeed = models.FloatField()
     windDirection = models.TextField()
+    user = models.ForeignKey(User, default=1)
 
 class Match (models.Model):
     match_number = models.AutoField(primary_key=True, unique=True)
     player = models.ForeignKey(Player,null=True, related_name='matches')
     date = models.DateTimeField()
     weather = models.ForeignKey(WeatherConditions, null = True, blank = True)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u'%i' % self.match_number
@@ -66,6 +71,7 @@ class Throw (models.Model):
     hole = models.ForeignKey(Hole,null=True, related_name='throws')
     match = models.ForeignKey(Match,null=True, related_name='throws')
     score = models.IntegerField( null = False, blank = False)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u'Hole: %s, Match: %s, Score: %i' % (self.hole, self.match,self.score)
