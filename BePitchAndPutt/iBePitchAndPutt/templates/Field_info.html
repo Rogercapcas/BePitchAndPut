@@ -1,24 +1,29 @@
 {% extends 'basepage.html' %}
 {% block content %}
 
-  <h1>{{field.field_name}}</h1>
+<span vocab="http://schema.org" typeof="GolfCourse">
+  <h1><span property="name">{{field.field_name}}</span></h1>
+  <div property="address" typeof="PostalAddress">
+    <h2> Adreça i contacte: </h2>
+    <span property="streetAddress">FieldStreet: {{field.street}}<br></span>
+    <span property="addressLocality">City: {{field.city}}</span><br>
+    <span property="addressRegion">FieldState: {{field.stateOrProvince}}</span><br>
+    <span property="postalCode">FieldZipCode: {{field.zipCode}}</span><br>
+    <span property="telephone">FieldTelephonenumber: {{field.telephone}}</span><br>
+  </div>
+  <div property="additionalType" typeof="URL">
+    <span property="url">FieldURL: {{field.url}}</span><br>
+  </div>
   <p>
-    Field: {{field.FieldCode}}<br>
-    FieldState: {{field.stateOrProvince}}<br>
-    City: {{field.city}}<br>
-    FieldStreet: {{field.street}}<br>
-    FieldZipCode: {{field.zipCode}}<br>
-    FieldTelephonenumber: {{field.telephone}}<br>
-    FieldURL: {{field.url}}<br>
+    <h2> Especificacions tècniques: </h2>
+    Field Code: {{field.FieldCode}}<br>
     Field_holes: {{field.number_of_holes}}<br>
     FieldPar: {{field.par}}<br>
   </p>
-  <p>
 
+  <p>
   <ul>
   <table border=1 cellpadding=10>
-
-
     <th>Forat</th>
     {%for hole in field.holes.all %}
       <th>{{hole.hole_number}}</th>
@@ -42,5 +47,3 @@
   </ul>
 </p>
 {% endblock %}
-
-

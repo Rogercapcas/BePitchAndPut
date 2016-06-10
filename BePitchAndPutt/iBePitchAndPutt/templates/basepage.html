@@ -10,6 +10,7 @@
   </head>
   <body>
   <div id="header">
+    <span style="float:right">
     {% block header %}
         {% if user.username %}
             <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
@@ -17,7 +18,12 @@
             <p><a href="{% url 'login' %}?next={{request.path}}">login</a></p>
         {% endif %}
     {% endblock %}
-</div>
+    </span>
+      <a href="javascript:history.back(-1);" title="Ir la página anterior">Enrere</a>
+      <a href="{% url 'home' %}">Inici</a>
+
+  </div>
+
 	<h1>{{ pagetitle }}</h1> 
 	{% block content %}
 	{% endblock %}
