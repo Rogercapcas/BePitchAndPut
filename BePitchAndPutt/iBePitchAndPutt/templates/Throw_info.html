@@ -3,13 +3,13 @@
 
   <h1>{{field.field_name}}</h1>
   <p>
-    Hole: {{throw.hole}}<br>
-    Score: {{throw.score}}<br>
+    Forat: {{throw.hole}}<br>
+    Puntuació: {{throw.score}}<br>
   </p>
 
    <p>
     {% if user == match.user %}
-        (<a href="{% url 'throw_edit' throw.id %}">Edit throw</a>)
+        (<a href="{% url 'throw_edit' throw.id %}">Edita tirada</a>)
     {% endif %}
   </p>
 {% endblock %}

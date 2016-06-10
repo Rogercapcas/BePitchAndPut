@@ -1,9 +1,9 @@
 {% extends "basepage.html" %}
 {% block content %}
 {% if user.username %}
-<p>Welcome {{ user.username }},
-your Pitch and Putt Application is ready to work!
-Now you can register all your results!
+<p>Benvingut {{ user.username }},
+la teva aplicació de Pitch And Putt esta a punt!
+Ja pots registrar els teus resultats!
   <li>
     <a href="{% url 'Player_list' %}"> {{'Jugadors'}}</a>
   </li>
@@ -15,8 +15,8 @@ Now you can register all your results!
   </li>
 </p>
 {% else %}
-<p>Welcome anonymous:
-Must  <a href="/login/">sign in</a>
-to register your results.</p>
+<p>Benvingut anònim:
+T'has de  <a href="/login/">registrar</a>
+per guardar els teus resultats.</p>
 {% endif %}
 {% endblock %}

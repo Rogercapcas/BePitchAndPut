@@ -74,8 +74,8 @@ def mainpage(request):
     'Mainpage.html',
     {
         'titlehead': 'BePitchAndPutt app',
-        'pagetitle': 'Welcome to BePitchAndPutt app',
-        'contentbody': 'Your best application to see your training results',
+        'pagetitle': 'Benvingut a BePitchAndPutt app',
+        'contentbody': 'La millor aplicacio per guardar els resultats dels teus entrenaments',
         'user': request.user
     })
 
@@ -162,7 +162,7 @@ def rules (request):
     'Rules.html',
     {
         'titlehead': 'Rules',
-        'pagetitle':'Rules of last version',
+        'pagetitle':'Ultima versio de les normes',
         
     })
 

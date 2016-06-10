@@ -1,19 +1,21 @@
 {% extends 'basepage.html' %}
 {% block content %}
-
-<h1>{{player.name}}</h1>
-  <p>
-    Player number: {{player.number_of_player}}<br>
-    Brithday: {{player.birthdate}}<br>
-    Country: {{player.country}}<br>
-    Player State: {{player.stateOrProvince}}<br>
-    City: {{player.city}}<br>
-    Street: {{player.street}}<br>
-    Zip code: {{player.zipCode}}<br>
-    Telephone: {{player.telephone}}<br>
+<span vocab = "http://shema.org" typeof="Person">
+<h1>Informació del jugador</h1>
+<div>
+<h2><span property="name">{{player.name}}<br>
+Nº de jugador: {{player.number_of_player}}</h2>
+<div>    
+    <span property="birthDate"> Data de naixement: {{player.birthdate}}<br>
+    <span property="address" typeof="PostalAddress">
+    <span property="addressCountry"> País: {{player.country}}<br>
+    <span property="addressRegion"> Estat: {{player.stateOrProvince}}<br>
+    <span property="addressLocality"> Ciutat: {{player.city}}<br>
+    <span property="streetAddres"> Adreça: {{player.street}}<br>
+    <span property="postalCode"> Codi postal: {{player.zipCode}}<br>
+    <span poperty="telephone"> Telèfon: {{player.telephone}}<br>
     Handicap: {{player.handicap}}<br>
-  </p>
-  <p>
+  <div>
   <ul>
     {% for match in player.matches.all %}
 
@@ -22,9 +24,9 @@
     {% empty %}<li>Sorry, no matches for this player yet.</li>
     {% endfor %}
   </ul>
-  </p>
-  <p>
+  </div>
+  <div>
   Matches
   {% if user.is_authenticated %}(<a href="{%url 'match_create' player.number_of_player%}" > Create new match </a>){% endif %}
-  </p>
+  </div>
 {% endblock %}

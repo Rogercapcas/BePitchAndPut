@@ -5,23 +5,21 @@
   <h1><span property="name">{{field.field_name}}</span></h1>
   <div property="address" typeof="PostalAddress">
     <h2> Adreça i contacte: </h2>
-    <span property="streetAddress">FieldStreet: {{field.street}}<br></span>
-    <span property="addressLocality">City: {{field.city}}</span><br>
-    <span property="addressRegion">FieldState: {{field.stateOrProvince}}</span><br>
-    <span property="postalCode">FieldZipCode: {{field.zipCode}}</span><br>
-    <span property="telephone">FieldTelephonenumber: {{field.telephone}}</span><br>
+    <span property="streetAddress">Carrer: {{field.street}}<br></span>
+    <span property="addressLocality">Ciutat: {{field.city}}</span><br>
+    <span property="addressRegion">País: {{field.stateOrProvince}}</span><br>
+    <span property="postalCode">Codi postal: {{field.zipCode}}</span><br>
+    <span property="telephone">Telèfon: {{field.telephone}}</span><br>
+    URL: {{field.url}}<br>
   </div>
-  <div property="additionalType" typeof="URL">
-    <span property="url">FieldURL: {{field.url}}</span><br>
-  </div>
-  <p>
+  <div>
     <h2> Especificacions tècniques: </h2>
-    Field Code: {{field.FieldCode}}<br>
-    Field_holes: {{field.number_of_holes}}<br>
-    FieldPar: {{field.par}}<br>
-  </p>
+    Codi del camp: {{field.FieldCode}}<br>
+    Número de forats: {{field.number_of_holes}}<br>
+    Par: {{field.par}}<br>
+  </div>
 
-  <p>
+  <div>
   <ul>
   <table border=1 cellpadding=10>
     <th>Forat</th>
@@ -45,5 +43,5 @@
 
   </table>
   </ul>
-</p>
+</div>
 {% endblock %}
